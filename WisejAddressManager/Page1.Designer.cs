@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle7 = new Wisej.Web.DataGridViewCellStyle();
-            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle8 = new Wisej.Web.DataGridViewCellStyle();
+            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle11 = new Wisej.Web.DataGridViewCellStyle();
+            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle12 = new Wisej.Web.DataGridViewCellStyle();
             this.OrganizationTable = new Wisej.Web.DataGridView();
             this.OIdCol = new Wisej.Web.DataGridViewTextBoxColumn();
             this.ONameCol = new Wisej.Web.DataGridViewTextBoxColumn();
@@ -84,8 +84,8 @@
             this.OrganizationTable.AutoSize = true;
             this.OrganizationTable.AutoSizeColumnsMode = Wisej.Web.DataGridViewAutoSizeColumnsMode.Fill;
             this.OrganizationTable.BackColor = System.Drawing.Color.FromName("@window");
-            dataGridViewCellStyle7.Alignment = Wisej.Web.DataGridViewContentAlignment.MiddleLeft;
-            this.OrganizationTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle11.Alignment = Wisej.Web.DataGridViewContentAlignment.MiddleLeft;
+            this.OrganizationTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.OrganizationTable.Columns.AddRange(new Wisej.Web.DataGridViewColumn[] {
             this.OIdCol,
             this.ONameCol,
@@ -171,6 +171,7 @@
             this.AddOrgForm.TabIndex = 3;
             this.AddOrgForm.Text = "Add Organization";
             this.AddOrgForm.Visible = false;
+            this.AddOrgForm.ResponsiveProfileChanged += new Wisej.Web.ResponsiveProfileChangedEventHandler(this.RelocateControlToCenter);
             // 
             // OrgInvalidLabel
             // 
@@ -280,8 +281,8 @@
             // 
             this.EmployeeTable.AutoSize = true;
             this.EmployeeTable.AutoSizeColumnsMode = Wisej.Web.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle8.Alignment = Wisej.Web.DataGridViewContentAlignment.MiddleLeft;
-            this.EmployeeTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle12.Alignment = Wisej.Web.DataGridViewContentAlignment.MiddleLeft;
+            this.EmployeeTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.EmployeeTable.Columns.AddRange(new Wisej.Web.DataGridViewColumn[] {
             this.EIdCol,
             this.ETitleCol,
@@ -396,6 +397,7 @@
             this.AddEmployeeForm.TabIndex = 10;
             this.AddEmployeeForm.Text = "Add Employee";
             this.AddEmployeeForm.Visible = false;
+            this.AddEmployeeForm.ResponsiveProfileChanged += new Wisej.Web.ResponsiveProfileChangedEventHandler(this.RelocateControlToCenter);
             // 
             // EmployeeInvalidLabel
             // 
@@ -493,7 +495,7 @@
             this.EmployeePanel.ShowCloseButton = false;
             this.EmployeePanel.Size = new System.Drawing.Size(753, 835);
             this.EmployeePanel.TabIndex = 11;
-            this.EmployeePanel.ResponsiveProfileChanged += new Wisej.Web.ResponsiveProfileChangedEventHandler(this.RelocatePanelToCenter);
+            this.EmployeePanel.ResponsiveProfileChanged += new Wisej.Web.ResponsiveProfileChangedEventHandler(this.RelocateControlToCenter);
             // 
             // OrganizationPanel
             // 
@@ -508,7 +510,7 @@
             this.OrganizationPanel.Name = "OrganizationPanel";
             this.OrganizationPanel.Size = new System.Drawing.Size(753, 835);
             this.OrganizationPanel.TabIndex = 12;
-            this.OrganizationPanel.ResponsiveProfileChanged += new Wisej.Web.ResponsiveProfileChangedEventHandler(this.RelocatePanelToCenter);
+            this.OrganizationPanel.ResponsiveProfileChanged += new Wisej.Web.ResponsiveProfileChangedEventHandler(this.RelocateControlToCenter);
             // 
             // Page1
             // 

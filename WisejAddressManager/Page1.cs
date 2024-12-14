@@ -28,8 +28,10 @@ namespace WisejAddressManager
 
         private void Page1_Load(object sender, System.EventArgs e)
         {
-            RelocatePanelToCenter(OrganizationPanel);
-            RelocatePanelToCenter(EmployeePanel);
+            RelocateControlToCenter(OrganizationPanel);
+            RelocateControlToCenter(EmployeePanel);
+            RelocateControlToCenter(AddEmployeeForm);
+            RelocateControlToCenter(AddOrgForm);
 
             AddOrgForm.Visible = false;
             OrgInvalidLabel.Visible = false;
@@ -320,7 +322,7 @@ namespace WisejAddressManager
                 sql += employeeId + ",";
             }
 
-            sql = sql.Substring(0, sql.Length - 1) + ")";
+            sql = $"{sql.Substring(0, sql.Length - 1)})";
 
             using (SQLiteCommand command = DB.GetCommand(sql)) command.ExecuteNonQuery();
 
@@ -465,18 +467,24 @@ namespace WisejAddressManager
 
             return cleanedStr;
         }
-
-        private void RelocatePanelToCenter(object sender, ResponsiveProfileChangedEventArgs e)
+        /// <summary>
+        /// Moves Control to the center of its parent
+        /// </summary>
+        /// <param name="sender">Control to move</param>
+        private void RelocateControlToCenter(object sender, ResponsiveProfileChangedEventArgs e)
         {
-            if (!(sender is Panel)) return;
-            RelocatePanelToCenter(sender as Panel);
+            RelocateControlToCenter(sender as Control);
         }
-        private void RelocatePanelToCenter(Panel panelToMove)
+        /// <summary>
+        /// Moves Control to the center of its parent
+        /// </summary>
+        /// <param name="controlToMove">Control to move</param>
+        private static void RelocateControlToCenter(Control controlToMove)
         {
-            panelToMove.Location = new Point(
-                this.ClientSize.Width / 2 - panelToMove.Size.Width / 2,
-                this.ClientSize.Height / 2 - panelToMove.Size.Height / 2);
-            panelToMove.Anchor = AnchorStyles.None;
+            controlToMove.Location = new Point(
+                controlToMove.Parent.Width / 2 - controlToMove.Size.Width / 2,
+                controlToMove.Parent.Height / 2 - controlToMove.Size.Height / 2);
+            controlToMove.Anchor = AnchorStyles.None;
         }
     }
 }
