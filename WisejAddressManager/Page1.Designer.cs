@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle19 = new Wisej.Web.DataGridViewCellStyle();
-            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle20 = new Wisej.Web.DataGridViewCellStyle();
+            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle7 = new Wisej.Web.DataGridViewCellStyle();
+            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle8 = new Wisej.Web.DataGridViewCellStyle();
             this.OrganizationTable = new Wisej.Web.DataGridView();
             this.OIdCol = new Wisej.Web.DataGridViewTextBoxColumn();
             this.ONameCol = new Wisej.Web.DataGridViewTextBoxColumn();
@@ -84,8 +84,8 @@
             this.OrganizationTable.AutoSize = true;
             this.OrganizationTable.AutoSizeColumnsMode = Wisej.Web.DataGridViewAutoSizeColumnsMode.Fill;
             this.OrganizationTable.BackColor = System.Drawing.Color.FromName("@window");
-            dataGridViewCellStyle19.Alignment = Wisej.Web.DataGridViewContentAlignment.MiddleLeft;
-            this.OrganizationTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle7.Alignment = Wisej.Web.DataGridViewContentAlignment.MiddleLeft;
+            this.OrganizationTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.OrganizationTable.Columns.AddRange(new Wisej.Web.DataGridViewColumn[] {
             this.OIdCol,
             this.ONameCol,
@@ -167,7 +167,7 @@
             this.AddOrgForm.Controls.Add(this.CountryBox);
             this.AddOrgForm.Location = new System.Drawing.Point(200, 90);
             this.AddOrgForm.Name = "AddOrgForm";
-            this.AddOrgForm.Size = new System.Drawing.Size(400, 250);
+            this.AddOrgForm.Size = new System.Drawing.Size(420, 250);
             this.AddOrgForm.TabIndex = 3;
             this.AddOrgForm.Text = "Add Organization";
             this.AddOrgForm.Visible = false;
@@ -186,18 +186,20 @@
             // 
             // OrgConfirm
             // 
-            this.OrgConfirm.Location = new System.Drawing.Point(152, 202);
+            this.OrgConfirm.BackColor = System.Drawing.Color.LightGreen;
+            this.OrgConfirm.Location = new System.Drawing.Point(183, 202);
             this.OrgConfirm.Name = "OrgConfirm";
-            this.OrgConfirm.Size = new System.Drawing.Size(125, 37);
+            this.OrgConfirm.Size = new System.Drawing.Size(125, 40);
             this.OrgConfirm.TabIndex = 5;
             this.OrgConfirm.Text = "Add Organization";
             this.OrgConfirm.Click += new System.EventHandler(this.OrgConfirm_Click);
             // 
             // OrgCancel
             // 
-            this.OrgCancel.Location = new System.Drawing.Point(283, 202);
+            this.OrgCancel.BackColor = System.Drawing.Color.LightCoral;
+            this.OrgCancel.Location = new System.Drawing.Point(320, 202);
             this.OrgCancel.Name = "OrgCancel";
-            this.OrgCancel.Size = new System.Drawing.Size(100, 37);
+            this.OrgCancel.Size = new System.Drawing.Size(100, 40);
             this.OrgCancel.TabIndex = 4;
             this.OrgCancel.Text = "Cancel";
             this.OrgCancel.Click += new System.EventHandler(this.OrgCancel_Click);
@@ -209,7 +211,7 @@
             this.NameBox.LabelText = "Organization Name";
             this.NameBox.Location = new System.Drawing.Point(6, 21);
             this.NameBox.Name = "NameBox";
-            this.NameBox.Size = new System.Drawing.Size(377, 30);
+            this.NameBox.Size = new System.Drawing.Size(408, 30);
             this.NameBox.TabIndex = 0;
             // 
             // StreetBox
@@ -219,7 +221,7 @@
             this.StreetBox.LabelText = "Street Address";
             this.StreetBox.Location = new System.Drawing.Point(6, 57);
             this.StreetBox.Name = "StreetBox";
-            this.StreetBox.Size = new System.Drawing.Size(377, 30);
+            this.StreetBox.Size = new System.Drawing.Size(408, 30);
             this.StreetBox.TabIndex = 1;
             // 
             // ZipBox
@@ -229,7 +231,7 @@
             this.ZipBox.LabelText = "Zip Code";
             this.ZipBox.Location = new System.Drawing.Point(6, 93);
             this.ZipBox.Name = "ZipBox";
-            this.ZipBox.Size = new System.Drawing.Size(377, 30);
+            this.ZipBox.Size = new System.Drawing.Size(408, 30);
             this.ZipBox.TabIndex = 2;
             // 
             // CityBox
@@ -239,7 +241,7 @@
             this.CityBox.LabelText = "City";
             this.CityBox.Location = new System.Drawing.Point(6, 129);
             this.CityBox.Name = "CityBox";
-            this.CityBox.Size = new System.Drawing.Size(377, 30);
+            this.CityBox.Size = new System.Drawing.Size(408, 30);
             this.CityBox.TabIndex = 3;
             // 
             // CountryBox
@@ -249,7 +251,7 @@
             this.CountryBox.LabelText = "Country";
             this.CountryBox.Location = new System.Drawing.Point(6, 166);
             this.CountryBox.Name = "CountryBox";
-            this.CountryBox.Size = new System.Drawing.Size(377, 30);
+            this.CountryBox.Size = new System.Drawing.Size(408, 30);
             this.CountryBox.TabIndex = 4;
             // 
             // EmployeeTableButton
@@ -278,8 +280,8 @@
             // 
             this.EmployeeTable.AutoSize = true;
             this.EmployeeTable.AutoSizeColumnsMode = Wisej.Web.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle20.Alignment = Wisej.Web.DataGridViewContentAlignment.MiddleLeft;
-            this.EmployeeTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle8.Alignment = Wisej.Web.DataGridViewContentAlignment.MiddleLeft;
+            this.EmployeeTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.EmployeeTable.Columns.AddRange(new Wisej.Web.DataGridViewColumn[] {
             this.EIdCol,
             this.ETitleCol,
@@ -390,7 +392,7 @@
             this.AddEmployeeForm.Controls.Add(this.EmailBox);
             this.AddEmployeeForm.Location = new System.Drawing.Point(200, 90);
             this.AddEmployeeForm.Name = "AddEmployeeForm";
-            this.AddEmployeeForm.Size = new System.Drawing.Size(400, 250);
+            this.AddEmployeeForm.Size = new System.Drawing.Size(420, 250);
             this.AddEmployeeForm.TabIndex = 10;
             this.AddEmployeeForm.Text = "Add Employee";
             this.AddEmployeeForm.Visible = false;
@@ -400,7 +402,7 @@
             this.EmployeeInvalidLabel.AutoSize = true;
             this.EmployeeInvalidLabel.Font = new System.Drawing.Font("@defaultBold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.EmployeeInvalidLabel.ForeColor = System.Drawing.Color.FromName("@danger");
-            this.EmployeeInvalidLabel.Location = new System.Drawing.Point(6, 211);
+            this.EmployeeInvalidLabel.Location = new System.Drawing.Point(20, 211);
             this.EmployeeInvalidLabel.Name = "EmployeeInvalidLabel";
             this.EmployeeInvalidLabel.Size = new System.Drawing.Size(150, 18);
             this.EmployeeInvalidLabel.TabIndex = 6;
@@ -409,18 +411,20 @@
             // 
             // EmployeeConfirm
             // 
-            this.EmployeeConfirm.Location = new System.Drawing.Point(152, 202);
+            this.EmployeeConfirm.BackColor = System.Drawing.Color.LightGreen;
+            this.EmployeeConfirm.Location = new System.Drawing.Point(183, 202);
             this.EmployeeConfirm.Name = "EmployeeConfirm";
-            this.EmployeeConfirm.Size = new System.Drawing.Size(125, 37);
+            this.EmployeeConfirm.Size = new System.Drawing.Size(125, 40);
             this.EmployeeConfirm.TabIndex = 5;
             this.EmployeeConfirm.Text = "Add Employee";
             this.EmployeeConfirm.Click += new System.EventHandler(this.EmployeeConfirm_Click);
             // 
             // EmployeeCancel
             // 
-            this.EmployeeCancel.Location = new System.Drawing.Point(283, 202);
+            this.EmployeeCancel.BackColor = System.Drawing.Color.LightCoral;
+            this.EmployeeCancel.Location = new System.Drawing.Point(314, 202);
             this.EmployeeCancel.Name = "EmployeeCancel";
-            this.EmployeeCancel.Size = new System.Drawing.Size(100, 37);
+            this.EmployeeCancel.Size = new System.Drawing.Size(100, 40);
             this.EmployeeCancel.TabIndex = 4;
             this.EmployeeCancel.Text = "Cancel";
             this.EmployeeCancel.Click += new System.EventHandler(this.EmployeeCancel_Click);
@@ -432,7 +436,7 @@
             this.TitleBox.LabelText = "Title";
             this.TitleBox.Location = new System.Drawing.Point(6, 21);
             this.TitleBox.Name = "TitleBox";
-            this.TitleBox.Size = new System.Drawing.Size(377, 30);
+            this.TitleBox.Size = new System.Drawing.Size(408, 30);
             this.TitleBox.TabIndex = 0;
             // 
             // FirstNameBox
@@ -442,7 +446,7 @@
             this.FirstNameBox.LabelText = "First Name";
             this.FirstNameBox.Location = new System.Drawing.Point(6, 57);
             this.FirstNameBox.Name = "FirstNameBox";
-            this.FirstNameBox.Size = new System.Drawing.Size(377, 30);
+            this.FirstNameBox.Size = new System.Drawing.Size(408, 30);
             this.FirstNameBox.TabIndex = 1;
             // 
             // LastNameBox
@@ -452,7 +456,7 @@
             this.LastNameBox.LabelText = "Last Name";
             this.LastNameBox.Location = new System.Drawing.Point(6, 93);
             this.LastNameBox.Name = "LastNameBox";
-            this.LastNameBox.Size = new System.Drawing.Size(377, 30);
+            this.LastNameBox.Size = new System.Drawing.Size(408, 30);
             this.LastNameBox.TabIndex = 2;
             // 
             // PhoneNumberBox
@@ -462,7 +466,7 @@
             this.PhoneNumberBox.LabelText = "Phone Number";
             this.PhoneNumberBox.Location = new System.Drawing.Point(6, 129);
             this.PhoneNumberBox.Name = "PhoneNumberBox";
-            this.PhoneNumberBox.Size = new System.Drawing.Size(377, 30);
+            this.PhoneNumberBox.Size = new System.Drawing.Size(408, 30);
             this.PhoneNumberBox.TabIndex = 3;
             // 
             // EmailBox
@@ -472,7 +476,7 @@
             this.EmailBox.LabelText = "Email";
             this.EmailBox.Location = new System.Drawing.Point(6, 166);
             this.EmailBox.Name = "EmailBox";
-            this.EmailBox.Size = new System.Drawing.Size(377, 30);
+            this.EmailBox.Size = new System.Drawing.Size(408, 30);
             this.EmailBox.TabIndex = 4;
             // 
             // EmployeePanel
