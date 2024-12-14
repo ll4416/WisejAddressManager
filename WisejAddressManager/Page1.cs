@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using System.Drawing;
 using Wisej.Web;
 
 namespace WisejAddressManager
@@ -27,6 +28,9 @@ namespace WisejAddressManager
 
         private void Page1_Load(object sender, System.EventArgs e)
         {
+            RelocatePanelToCenter(OrganizationPanel);
+            RelocatePanelToCenter(EmployeePanel);
+
             AddOrgForm.Visible = false;
             OrgInvalidLabel.Visible = false;
 
@@ -460,6 +464,19 @@ namespace WisejAddressManager
             cleanedStr = cleanedStr.Trim();
 
             return cleanedStr;
+        }
+
+        private void RelocatePanelToCenter(object sender, ResponsiveProfileChangedEventArgs e)
+        {
+            if (!(sender is Panel)) return;
+            RelocatePanelToCenter(sender as Panel);
+        }
+        private void RelocatePanelToCenter(Panel panelToMove)
+        {
+            panelToMove.Location = new Point(
+                this.ClientSize.Width / 2 - panelToMove.Size.Width / 2,
+                this.ClientSize.Height / 2 - panelToMove.Size.Height / 2);
+            panelToMove.Anchor = AnchorStyles.None;
         }
     }
 }

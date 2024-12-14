@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle3 = new Wisej.Web.DataGridViewCellStyle();
-            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle4 = new Wisej.Web.DataGridViewCellStyle();
+            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle19 = new Wisej.Web.DataGridViewCellStyle();
+            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle20 = new Wisej.Web.DataGridViewCellStyle();
             this.OrganizationTable = new Wisej.Web.DataGridView();
             this.OIdCol = new Wisej.Web.DataGridViewTextBoxColumn();
             this.ONameCol = new Wisej.Web.DataGridViewTextBoxColumn();
@@ -82,9 +82,10 @@
             // OrganizationTable
             // 
             this.OrganizationTable.AutoSize = true;
-            this.OrganizationTable.BackColor = System.Drawing.Color.Red;
-            dataGridViewCellStyle3.Alignment = Wisej.Web.DataGridViewContentAlignment.MiddleLeft;
-            this.OrganizationTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.OrganizationTable.AutoSizeColumnsMode = Wisej.Web.DataGridViewAutoSizeColumnsMode.Fill;
+            this.OrganizationTable.BackColor = System.Drawing.Color.FromName("@window");
+            dataGridViewCellStyle19.Alignment = Wisej.Web.DataGridViewContentAlignment.MiddleLeft;
+            this.OrganizationTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
             this.OrganizationTable.Columns.AddRange(new Wisej.Web.DataGridViewColumn[] {
             this.OIdCol,
             this.ONameCol,
@@ -92,11 +93,12 @@
             this.OZipCol,
             this.OCityCol,
             this.OCountryCol});
-            this.OrganizationTable.Location = new System.Drawing.Point(3, 43);
+            this.OrganizationTable.Location = new System.Drawing.Point(0, 45);
+            this.OrganizationTable.MinimumSize = new System.Drawing.Size(750, 0);
             this.OrganizationTable.MultiSelect = false;
             this.OrganizationTable.Name = "OrganizationTable";
             this.OrganizationTable.ShowColumnVisibilityMenu = false;
-            this.OrganizationTable.Size = new System.Drawing.Size(542, 36);
+            this.OrganizationTable.Size = new System.Drawing.Size(750, 36);
             this.OrganizationTable.TabIndex = 0;
             this.OrganizationTable.CellBeginEdit += new Wisej.Web.DataGridViewCellCancelEventHandler(this.OrganizationTable_CellBeginEdit);
             this.OrganizationTable.CellEndEdit += new Wisej.Web.DataGridViewCellEventHandler(this.OrganizationTable_CellEndEdit);
@@ -143,9 +145,11 @@
             // AddOrgButton
             // 
             this.AddOrgButton.AutoSize = true;
-            this.AddOrgButton.Location = new System.Drawing.Point(-3, 0);
+            this.AddOrgButton.BackColor = System.Drawing.Color.LightGreen;
+            this.AddOrgButton.Font = new System.Drawing.Font("@defaultBold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.AddOrgButton.Location = new System.Drawing.Point(0, 0);
             this.AddOrgButton.Name = "AddOrgButton";
-            this.AddOrgButton.Size = new System.Drawing.Size(118, 37);
+            this.AddOrgButton.Size = new System.Drawing.Size(150, 40);
             this.AddOrgButton.TabIndex = 2;
             this.AddOrgButton.Text = "Add Organization";
             this.AddOrgButton.Click += new System.EventHandler(this.AddOrgButton_Click);
@@ -161,9 +165,9 @@
             this.AddOrgForm.Controls.Add(this.ZipBox);
             this.AddOrgForm.Controls.Add(this.CityBox);
             this.AddOrgForm.Controls.Add(this.CountryBox);
-            this.AddOrgForm.Location = new System.Drawing.Point(175, 89);
+            this.AddOrgForm.Location = new System.Drawing.Point(200, 90);
             this.AddOrgForm.Name = "AddOrgForm";
-            this.AddOrgForm.Size = new System.Drawing.Size(395, 254);
+            this.AddOrgForm.Size = new System.Drawing.Size(400, 250);
             this.AddOrgForm.TabIndex = 3;
             this.AddOrgForm.Text = "Add Organization";
             this.AddOrgForm.Visible = false;
@@ -250,18 +254,22 @@
             // 
             // EmployeeTableButton
             // 
-            this.EmployeeTableButton.Location = new System.Drawing.Point(486, 0);
+            this.EmployeeTableButton.BackColor = System.Drawing.Color.LightCyan;
+            this.EmployeeTableButton.Font = new System.Drawing.Font("@defaultBold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.EmployeeTableButton.Location = new System.Drawing.Point(480, 0);
             this.EmployeeTableButton.Name = "EmployeeTableButton";
-            this.EmployeeTableButton.Size = new System.Drawing.Size(265, 37);
+            this.EmployeeTableButton.Size = new System.Drawing.Size(270, 40);
             this.EmployeeTableButton.TabIndex = 4;
             this.EmployeeTableButton.Text = "Show Employees of Selected Organization";
             this.EmployeeTableButton.Click += new System.EventHandler(this.EmployeeTableButton_Click);
             // 
             // DeleteOrgButton
             // 
-            this.DeleteOrgButton.Location = new System.Drawing.Point(120, 0);
+            this.DeleteOrgButton.BackColor = System.Drawing.Color.LightCoral;
+            this.DeleteOrgButton.Font = new System.Drawing.Font("@defaultBold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.DeleteOrgButton.Location = new System.Drawing.Point(170, 0);
             this.DeleteOrgButton.Name = "DeleteOrgButton";
-            this.DeleteOrgButton.Size = new System.Drawing.Size(200, 37);
+            this.DeleteOrgButton.Size = new System.Drawing.Size(200, 40);
             this.DeleteOrgButton.TabIndex = 5;
             this.DeleteOrgButton.Text = "Delete Selected Organization";
             this.DeleteOrgButton.Click += new System.EventHandler(this.DeleteOrgButton_Click);
@@ -269,8 +277,9 @@
             // EmployeeTable
             // 
             this.EmployeeTable.AutoSize = true;
-            dataGridViewCellStyle4.Alignment = Wisej.Web.DataGridViewContentAlignment.MiddleLeft;
-            this.EmployeeTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.EmployeeTable.AutoSizeColumnsMode = Wisej.Web.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle20.Alignment = Wisej.Web.DataGridViewContentAlignment.MiddleLeft;
+            this.EmployeeTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
             this.EmployeeTable.Columns.AddRange(new Wisej.Web.DataGridViewColumn[] {
             this.EIdCol,
             this.ETitleCol,
@@ -279,10 +288,11 @@
             this.EPhoneNumberCol,
             this.EEmailCol,
             this.EOrgIdCol});
-            this.EmployeeTable.Location = new System.Drawing.Point(0, 43);
+            this.EmployeeTable.Location = new System.Drawing.Point(0, 45);
+            this.EmployeeTable.MinimumSize = new System.Drawing.Size(750, 0);
             this.EmployeeTable.Name = "EmployeeTable";
             this.EmployeeTable.ShowColumnVisibilityMenu = false;
-            this.EmployeeTable.Size = new System.Drawing.Size(742, 36);
+            this.EmployeeTable.Size = new System.Drawing.Size(750, 36);
             this.EmployeeTable.TabIndex = 6;
             this.EmployeeTable.CellBeginEdit += new Wisej.Web.DataGridViewCellCancelEventHandler(this.EmployeeTable_CellBeginEdit);
             this.EmployeeTable.CellEndEdit += new Wisej.Web.DataGridViewCellEventHandler(this.EmployeeTable_CellEndEdit);
@@ -336,27 +346,33 @@
             // 
             // AddEmployeeButton
             // 
-            this.AddEmployeeButton.Location = new System.Drawing.Point(-1, -1);
+            this.AddEmployeeButton.BackColor = System.Drawing.Color.LightGreen;
+            this.AddEmployeeButton.Font = new System.Drawing.Font("@defaultBold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.AddEmployeeButton.Location = new System.Drawing.Point(0, 0);
             this.AddEmployeeButton.Name = "AddEmployeeButton";
-            this.AddEmployeeButton.Size = new System.Drawing.Size(118, 37);
+            this.AddEmployeeButton.Size = new System.Drawing.Size(150, 40);
             this.AddEmployeeButton.TabIndex = 7;
             this.AddEmployeeButton.Text = "Add Employee";
             this.AddEmployeeButton.Click += new System.EventHandler(this.AddEmployeeButton_Click);
             // 
             // DeleteEmployeeButton
             // 
-            this.DeleteEmployeeButton.Location = new System.Drawing.Point(123, -1);
+            this.DeleteEmployeeButton.BackColor = System.Drawing.Color.LightCoral;
+            this.DeleteEmployeeButton.Font = new System.Drawing.Font("@defaultBold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.DeleteEmployeeButton.Location = new System.Drawing.Point(170, 0);
             this.DeleteEmployeeButton.Name = "DeleteEmployeeButton";
-            this.DeleteEmployeeButton.Size = new System.Drawing.Size(200, 37);
+            this.DeleteEmployeeButton.Size = new System.Drawing.Size(200, 40);
             this.DeleteEmployeeButton.TabIndex = 8;
             this.DeleteEmployeeButton.Text = "Delete Selected Employees";
             this.DeleteEmployeeButton.Click += new System.EventHandler(this.DeleteEmployeeButton_Click);
             // 
             // OrganizationTableButton
             // 
-            this.OrganizationTableButton.Location = new System.Drawing.Point(579, -2);
+            this.OrganizationTableButton.BackColor = System.Drawing.Color.LightCyan;
+            this.OrganizationTableButton.Font = new System.Drawing.Font("@defaultBold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.OrganizationTableButton.Location = new System.Drawing.Point(480, 0);
             this.OrganizationTableButton.Name = "OrganizationTableButton";
-            this.OrganizationTableButton.Size = new System.Drawing.Size(172, 38);
+            this.OrganizationTableButton.Size = new System.Drawing.Size(270, 40);
             this.OrganizationTableButton.TabIndex = 9;
             this.OrganizationTableButton.Text = "Show Organizations";
             this.OrganizationTableButton.Click += new System.EventHandler(this.OrganizationTableButton_Click);
@@ -372,9 +388,9 @@
             this.AddEmployeeForm.Controls.Add(this.LastNameBox);
             this.AddEmployeeForm.Controls.Add(this.PhoneNumberBox);
             this.AddEmployeeForm.Controls.Add(this.EmailBox);
-            this.AddEmployeeForm.Location = new System.Drawing.Point(207, 86);
+            this.AddEmployeeForm.Location = new System.Drawing.Point(200, 90);
             this.AddEmployeeForm.Name = "AddEmployeeForm";
-            this.AddEmployeeForm.Size = new System.Drawing.Size(395, 254);
+            this.AddEmployeeForm.Size = new System.Drawing.Size(400, 250);
             this.AddEmployeeForm.TabIndex = 10;
             this.AddEmployeeForm.Text = "Add Employee";
             this.AddEmployeeForm.Visible = false;
@@ -461,38 +477,45 @@
             // 
             // EmployeePanel
             // 
+            this.EmployeePanel.AutoScroll = true;
+            this.EmployeePanel.AutoSize = true;
             this.EmployeePanel.Controls.Add(this.OrganizationTableButton);
             this.EmployeePanel.Controls.Add(this.AddEmployeeButton);
             this.EmployeePanel.Controls.Add(this.DeleteEmployeeButton);
             this.EmployeePanel.Controls.Add(this.AddEmployeeForm);
             this.EmployeePanel.Controls.Add(this.EmployeeTable);
-            this.EmployeePanel.Location = new System.Drawing.Point(25, 50);
+            this.EmployeePanel.Location = new System.Drawing.Point(150, 50);
             this.EmployeePanel.Name = "EmployeePanel";
             this.EmployeePanel.ShowCloseButton = false;
-            this.EmployeePanel.Size = new System.Drawing.Size(750, 700);
+            this.EmployeePanel.Size = new System.Drawing.Size(753, 835);
             this.EmployeePanel.TabIndex = 11;
+            this.EmployeePanel.ResponsiveProfileChanged += new Wisej.Web.ResponsiveProfileChangedEventHandler(this.RelocatePanelToCenter);
             // 
             // OrganizationPanel
             // 
+            this.OrganizationPanel.AutoScroll = true;
+            this.OrganizationPanel.AutoSize = true;
             this.OrganizationPanel.Controls.Add(this.AddOrgButton);
             this.OrganizationPanel.Controls.Add(this.DeleteOrgButton);
             this.OrganizationPanel.Controls.Add(this.EmployeeTableButton);
             this.OrganizationPanel.Controls.Add(this.AddOrgForm);
             this.OrganizationPanel.Controls.Add(this.OrganizationTable);
-            this.OrganizationPanel.Location = new System.Drawing.Point(25, 50);
+            this.OrganizationPanel.Location = new System.Drawing.Point(150, 50);
             this.OrganizationPanel.Name = "OrganizationPanel";
-            this.OrganizationPanel.Size = new System.Drawing.Size(750, 700);
+            this.OrganizationPanel.Size = new System.Drawing.Size(753, 835);
             this.OrganizationPanel.TabIndex = 12;
+            this.OrganizationPanel.ResponsiveProfileChanged += new Wisej.Web.ResponsiveProfileChangedEventHandler(this.RelocatePanelToCenter);
             // 
             // Page1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 19F);
             this.AutoScaleMode = Wisej.Web.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromName("@window");
-            this.Controls.Add(this.OrganizationPanel);
             this.Controls.Add(this.EmployeePanel);
+            this.Controls.Add(this.OrganizationPanel);
             this.Name = "Page1";
-            this.Size = new System.Drawing.Size(924, 861);
+            this.Size = new System.Drawing.Size(907, 861);
             this.Load += new System.EventHandler(this.Page1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.OrganizationTable)).EndInit();
             this.AddOrgForm.ResumeLayout(false);
@@ -505,6 +528,7 @@
             this.OrganizationPanel.ResumeLayout(false);
             this.OrganizationPanel.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
