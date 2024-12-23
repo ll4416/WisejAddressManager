@@ -53,6 +53,7 @@
             // ConfirmButton
             // 
             this.ConfirmButton.BackColor = System.Drawing.Color.LightGreen;
+            this.ConfirmButton.DialogResult = Wisej.Web.DialogResult.OK;
             this.ConfirmButton.Location = new System.Drawing.Point(204, 195);
             this.ConfirmButton.Name = "ConfirmButton";
             this.ConfirmButton.Size = new System.Drawing.Size(125, 40);
@@ -63,6 +64,7 @@
             // CancelButton
             // 
             this.CancelButton.BackColor = System.Drawing.Color.LightCoral;
+            this.CancelButton.DialogResult = Wisej.Web.DialogResult.Cancel;
             this.CancelButton.Location = new System.Drawing.Point(335, 195);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(100, 40);
@@ -122,8 +124,10 @@
             // 
             // AddOrganizationForm
             // 
+            this.AcceptButton = this.ConfirmButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 19F);
             this.AutoScaleMode = Wisej.Web.AutoScaleMode.Font;
+            this.CancelButton = this.CancelButton;
             this.ClientSize = new System.Drawing.Size(458, 263);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.ConfirmButton);

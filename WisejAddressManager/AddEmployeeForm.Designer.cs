@@ -122,8 +122,10 @@
             // 
             // AddEmployeeForm
             // 
+            this.AcceptButton = this.ConfirmButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 19F);
             this.AutoScaleMode = Wisej.Web.AutoScaleMode.Font;
+            this.CancelButton = this.CancelButton;
             this.ClientSize = new System.Drawing.Size(458, 263);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.ConfirmButton);

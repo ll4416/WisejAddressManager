@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle3 = new Wisej.Web.DataGridViewCellStyle();
-            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle4 = new Wisej.Web.DataGridViewCellStyle();
+            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle5 = new Wisej.Web.DataGridViewCellStyle();
+            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle6 = new Wisej.Web.DataGridViewCellStyle();
             this.OrganizationTable = new Wisej.Web.DataGridView();
             this.OIdCol = new Wisej.Web.DataGridViewTextBoxColumn();
             this.ONameCol = new Wisej.Web.DataGridViewTextBoxColumn();
@@ -53,6 +53,7 @@
             this.OrganizationTableButton = new Wisej.Web.Button();
             this.EmployeePanel = new Wisej.Web.Panel();
             this.OrganizationPanel = new Wisej.Web.Panel();
+            this.DialogBox = new Wisej.Web.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.OrganizationTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EmployeeTable)).BeginInit();
             this.EmployeePanel.SuspendLayout();
@@ -64,8 +65,8 @@
             this.OrganizationTable.AutoSize = true;
             this.OrganizationTable.AutoSizeColumnsMode = Wisej.Web.DataGridViewAutoSizeColumnsMode.AllCells;
             this.OrganizationTable.BackColor = System.Drawing.Color.FromName("@window");
-            dataGridViewCellStyle3.Alignment = Wisej.Web.DataGridViewContentAlignment.MiddleLeft;
-            this.OrganizationTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.Alignment = Wisej.Web.DataGridViewContentAlignment.MiddleLeft;
+            this.OrganizationTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.OrganizationTable.Columns.AddRange(new Wisej.Web.DataGridViewColumn[] {
             this.OIdCol,
             this.ONameCol,
@@ -160,8 +161,8 @@
             // 
             this.EmployeeTable.AutoSize = true;
             this.EmployeeTable.AutoSizeColumnsMode = Wisej.Web.DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridViewCellStyle4.Alignment = Wisej.Web.DataGridViewContentAlignment.MiddleLeft;
-            this.EmployeeTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle6.Alignment = Wisej.Web.DataGridViewContentAlignment.MiddleLeft;
+            this.EmployeeTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.EmployeeTable.Columns.AddRange(new Wisej.Web.DataGridViewColumn[] {
             this.EIdCol,
             this.ETitleCol,
@@ -250,6 +251,7 @@
             // 
             // OrganizationTableButton
             // 
+            this.OrganizationTableButton.Anchor = ((Wisej.Web.AnchorStyles)((Wisej.Web.AnchorStyles.Top | Wisej.Web.AnchorStyles.Right)));
             this.OrganizationTableButton.BackColor = System.Drawing.Color.LightCyan;
             this.OrganizationTableButton.Font = new System.Drawing.Font("@defaultBold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.OrganizationTableButton.Location = new System.Drawing.Point(480, 0);
@@ -262,7 +264,6 @@
             // EmployeePanel
             // 
             this.EmployeePanel.AutoScroll = true;
-            this.EmployeePanel.AutoSize = true;
             this.EmployeePanel.Controls.Add(this.OrganizationTableButton);
             this.EmployeePanel.Controls.Add(this.AddEmployeeButton);
             this.EmployeePanel.Controls.Add(this.DeleteEmployeeButton);
@@ -270,9 +271,9 @@
             this.EmployeePanel.Location = new System.Drawing.Point(150, 50);
             this.EmployeePanel.Name = "EmployeePanel";
             this.EmployeePanel.ShowCloseButton = false;
-            this.EmployeePanel.Size = new System.Drawing.Size(753, 835);
+            this.EmployeePanel.Size = new System.Drawing.Size(753, 200);
             this.EmployeePanel.TabIndex = 11;
-            this.EmployeePanel.ResponsiveProfileChanged += new Wisej.Web.ResponsiveProfileChangedEventHandler(this.RelocateControlToCenter);
+            this.EmployeePanel.ResponsiveProfileChanged += new Wisej.Web.ResponsiveProfileChangedEventHandler(this.MainPanel_ResponsiveProfileChanged);
             // 
             // OrganizationPanel
             // 
@@ -284,9 +285,16 @@
             this.OrganizationPanel.Controls.Add(this.OrganizationTable);
             this.OrganizationPanel.Location = new System.Drawing.Point(150, 50);
             this.OrganizationPanel.Name = "OrganizationPanel";
-            this.OrganizationPanel.Size = new System.Drawing.Size(753, 835);
+            this.OrganizationPanel.Size = new System.Drawing.Size(753, 200);
             this.OrganizationPanel.TabIndex = 12;
-            this.OrganizationPanel.ResponsiveProfileChanged += new Wisej.Web.ResponsiveProfileChangedEventHandler(this.RelocateControlToCenter);
+            this.OrganizationPanel.ResponsiveProfileChanged += new Wisej.Web.ResponsiveProfileChangedEventHandler(this.MainPanel_ResponsiveProfileChanged);
+            // 
+            // DialogBox
+            // 
+            this.DialogBox.Location = new System.Drawing.Point(0, 0);
+            this.DialogBox.Name = "DialogBox";
+            this.DialogBox.Size = new System.Drawing.Size(802, 30);
+            this.DialogBox.TabIndex = 13;
             // 
             // Page1
             // 
@@ -294,10 +302,11 @@
             this.AutoScaleMode = Wisej.Web.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromName("@window");
+            this.Controls.Add(this.DialogBox);
             this.Controls.Add(this.EmployeePanel);
             this.Controls.Add(this.OrganizationPanel);
             this.Name = "Page1";
-            this.Size = new System.Drawing.Size(873, 827);
+            this.Size = new System.Drawing.Size(924, 861);
             this.Load += new System.EventHandler(this.Page1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.OrganizationTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EmployeeTable)).EndInit();
@@ -334,6 +343,7 @@
         private Wisej.Web.Button OrganizationTableButton;
         private Wisej.Web.Panel EmployeePanel;
         private Wisej.Web.Panel OrganizationPanel;
+        private Wisej.Web.TextBox DialogBox;
     }
 }
 
