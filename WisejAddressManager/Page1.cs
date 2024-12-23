@@ -30,14 +30,6 @@ namespace WisejAddressManager
         {
             RelocateControlToCenter(OrganizationPanel);
             RelocateControlToCenter(EmployeePanel);
-            RelocateControlToCenter(AddEmployeeForm);
-            RelocateControlToCenter(AddOrgForm);
-
-            AddOrgForm.Visible = false;
-            OrgInvalidLabel.Visible = false;
-
-            AddEmployeeForm.Visible = false;
-            EmployeeInvalidLabel.Visible = false;
 
             EmployeePanel.Visible = false;
 
@@ -81,7 +73,7 @@ namespace WisejAddressManager
             using (SQLiteCommand command = DB.GetCommand(sql))
             {
                 command.Parameters.AddWithValue("@Id", editOrgCellId);
-                command.Parameters.AddWithValue("@Data", CleanInput(insertedData.ToString()));
+                command.Parameters.AddWithValue("@Data", DB.CleanInput(insertedData.ToString()));
 
                 command.ExecuteNonQuery();
             }
@@ -96,7 +88,12 @@ namespace WisejAddressManager
         /// </summary>
         private void AddOrgButton_Click(object sender, EventArgs e)
         {
-            OpenAddOrgForm();
+            using (AddOrganizationForm orgForm = new AddOrganizationForm())
+            {
+                DialogResult result = orgForm.ShowDialog();
+                if (result == DialogResult.OK)
+                    UpdateOrgGrid();
+            }
         }
         /// <summary>
         /// Checks if the deletion action is valid. If valid, the user will be warned.
@@ -140,14 +137,14 @@ namespace WisejAddressManager
 
             int orgIdToDelete = (int)(OrganizationTable.SelectedRows[0]["OIdCol"].Value ?? -1);
 
-            string sql = $"DELETE FROM 'Organizations' WHERE Id = @OrgId";
+            string sql = "DELETE FROM 'Organizations' WHERE Id = @OrgId";
             using (SQLiteCommand command = DB.GetCommand(sql))
             {
                 command.Parameters.AddWithValue("@OrgId", orgIdToDelete);
                 command.ExecuteNonQuery();
             }
 
-            sql = $"DELETE FROM 'Employees' WHERE OrganizationId = @OrgId";
+            sql = "DELETE FROM 'Employees' WHERE OrganizationId = @OrgId";
             using (SQLiteCommand command = DB.GetCommand(sql))
             {
                 command.Parameters.AddWithValue("@OrgId", orgIdToDelete);
@@ -189,48 +186,6 @@ namespace WisejAddressManager
             ToggleOrganizationEmployeeView();
         }
 
-        // Add Organization Form
-        /// <summary>
-        /// Validates incoming data. If data is valid a new organization is added.
-        /// </summary>
-        private void OrgConfirm_Click(object sender, EventArgs e)
-        {
-            if (NameBox.Text == string.Empty ||
-                StreetBox.Text == string.Empty ||
-                ZipBox.Text == string.Empty ||
-                CityBox.Text == string.Empty ||
-                CountryBox.Text == string.Empty)
-            {
-                OrgInvalidLabel.Visible = true;
-                return;
-            }
-
-            string sql =
-            @"
-                INSERT INTO 'Organizations' (Name, Street, Zip, City, Country)
-                VALUES (@Name, @Street, @Zip, @City, @Country)
-            ";
-
-            using (SQLiteCommand command = DB.GetCommand(sql))
-            {
-                command.Parameters.AddWithValue("@Name", CleanInput(NameBox.Text));
-                command.Parameters.AddWithValue("@Street", CleanInput(StreetBox.Text));
-                command.Parameters.AddWithValue("@Zip", CleanInput(ZipBox.Text));
-                command.Parameters.AddWithValue("@City", CleanInput(CityBox.Text));
-                command.Parameters.AddWithValue("@Country", CleanInput(CountryBox.Text));
-                command.ExecuteNonQuery();
-            }
-            UpdateOrgGrid();
-            CloseAddOrgForm();
-        }
-        /// <summary>
-        /// Closes the Add Organizaion Form
-        /// </summary>
-        private void OrgCancel_Click(object sender, EventArgs e)
-        {
-            CloseAddOrgForm();
-        }
-
         // Employee Table Editing
         /// <summary>
         /// Saves current cell data in the case of invalid input
@@ -268,7 +223,7 @@ namespace WisejAddressManager
             using (SQLiteCommand command = DB.GetCommand(sql))
             {
                 command.Parameters.AddWithValue("@Id", editEmployeeCellId);
-                command.Parameters.AddWithValue("@Data", CleanInput(insertedData.ToString()));
+                command.Parameters.AddWithValue("@Data", DB.CleanInput(insertedData.ToString()));
 
                 command.ExecuteNonQuery();
             }
@@ -278,12 +233,15 @@ namespace WisejAddressManager
         }
 
         // Employee View Buttons
-        /// <summary>
-        /// Opens the Add Employee Form
-        /// </summary>
         private void AddEmployeeButton_Click(object sender, EventArgs e)
         {
-            OpenAddEmployeeForm();
+
+            using (AddEmployeeForm orgForm = new AddEmployeeForm(currentOrgId))
+            {
+                DialogResult result = orgForm.ShowDialog();
+                if (result == DialogResult.OK)
+                    UpdateEmployeeGrid();
+            }
         }
         /// <summary>
         /// Toggles to the Organization table
@@ -326,7 +284,7 @@ namespace WisejAddressManager
                 employeeIdsToDelete.Add((int)row["EIdCol"].Value);
             }
 
-            string sql = $"DELETE FROM 'Employees' WHERE Id IN (";
+            string sql = "DELETE FROM 'Employees' WHERE Id IN (";
 
             for (int i = 0; i < employeeIdsToDelete.Count; i++)
                 sql += $"@EmployeeId{i},";
@@ -341,49 +299,6 @@ namespace WisejAddressManager
             }
 
             UpdateEmployeeGrid();
-        }
-
-        // Add Employee Form
-        /// <summary>
-        /// Validates incoming data. If data is valid a new employee is added to the current organization.
-        /// </summary>
-        private void EmployeeConfirm_Click(object sender, EventArgs e)
-        {
-            if (TitleBox.Text == string.Empty ||
-                FirstNameBox.Text == string.Empty ||
-                LastNameBox.Text == string.Empty ||
-                PhoneNumberBox.Text == string.Empty ||
-                EmailBox.Text == string.Empty)
-            {
-                EmployeeInvalidLabel.Visible = true;
-                return;
-            }
-
-            string sql =
-            @"
-                INSERT INTO 'Employees' (Title, FirstName, LastName, PhoneNumber, Email, OrganizationId) 
-                VALUES (@Title, @FirstName, @LastName, @PhoneNumber, @Email, @OrganizationId)
-            ";
-
-            using (SQLiteCommand command = DB.GetCommand(sql))
-            {
-                command.Parameters.AddWithValue("@Title", CleanInput(TitleBox.Text));
-                command.Parameters.AddWithValue("@FirstName", CleanInput(FirstNameBox.Text));
-                command.Parameters.AddWithValue("@LastName", CleanInput(LastNameBox.Text));
-                command.Parameters.AddWithValue("@PhoneNumber", CleanInput(PhoneNumberBox.Text));
-                command.Parameters.AddWithValue("@Email", CleanInput(EmailBox.Text));
-                command.Parameters.AddWithValue("@OrganizationId", currentOrgId);
-                command.ExecuteNonQuery();
-            }
-            UpdateEmployeeGrid();
-            CloseAddEmployeeForm();
-        }
-        /// <summary>
-        /// Closes the Add Employee Form
-        /// </summary>
-        private void EmployeeCancel_Click(object sender, EventArgs e)
-        {
-            CloseAddEmployeeForm();
         }
 
         // Helper Methods
@@ -411,68 +326,6 @@ namespace WisejAddressManager
                     $"SELECT * FROM 'Employees' WHERE OrganizationId = {currentOrgId}");
                 EmployeeTable.DataSource = employees;
             }
-        }
-        private void OpenAddOrgForm()
-        {
-            EmployeeTableButton.Enabled = false;
-            DeleteOrgButton.Enabled = false;
-            AddOrgButton.Enabled = false;
-            OrganizationTable.Enabled = false;
-
-            AddOrgForm.Visible = true;
-        }
-        private void CloseAddOrgForm()
-        {
-            EmployeeTableButton.Enabled = true;
-            DeleteOrgButton.Enabled = true;
-            AddOrgButton.Enabled = true;
-            OrganizationTable.Enabled = true;
-
-            OrgInvalidLabel.Visible = false;
-            AddOrgForm.Visible = false;
-
-            NameBox.Text = string.Empty;
-            StreetBox.Text = string.Empty;
-            ZipBox.Text = string.Empty;
-            CityBox.Text = string.Empty;
-            CountryBox.Text = string.Empty;
-        }
-        private void OpenAddEmployeeForm()
-        {
-            OrganizationTableButton.Enabled = false;
-            DeleteEmployeeButton.Enabled = false;
-            AddEmployeeButton.Enabled = false;
-            EmployeeTable.Enabled = false;
-
-            AddEmployeeForm.Visible = true;
-        }
-        private void CloseAddEmployeeForm()
-        {
-            OrganizationTableButton.Enabled = true;
-            DeleteEmployeeButton.Enabled = true;
-            AddEmployeeButton.Enabled = true;
-            EmployeeTable.Enabled = true;
-
-            EmployeeInvalidLabel.Visible = false;
-            AddEmployeeForm.Visible = false;
-
-            TitleBox.Text = string.Empty;
-            FirstNameBox.Text = string.Empty;
-            LastNameBox.Text = string.Empty;
-            PhoneNumberBox.Text = string.Empty;
-            EmailBox.Text = string.Empty;
-        }
-        /// <summary>
-        /// Cleans a string for input into a SQLite database
-        /// </summary>
-        /// <param name="input">String to be cleaned</param>
-        /// <returns>Cleaned input</returns>
-        private static string CleanInput(string input)
-        {
-            string cleanedStr = input;
-            cleanedStr = cleanedStr.Trim();
-
-            return cleanedStr;
         }
         /// <summary>
         /// Moves Control to the center of its parent

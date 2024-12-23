@@ -22,5 +22,18 @@ namespace WisejAddressManager
         {
             return new SQLiteCommand(sql, GetConnection());
         }
+
+        /// <summary>
+        /// Cleans a string for input into a SQLite database
+        /// </summary>
+        /// <param name="input">String to be cleaned</param>
+        /// <returns>Cleaned input</returns>
+        public static string CleanInput(string input)
+        {
+            string cleanedStr = input;
+            cleanedStr = cleanedStr.Trim();
+
+            return cleanedStr;
+        }
     }
 }

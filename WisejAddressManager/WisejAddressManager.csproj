@@ -68,6 +68,12 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="AddEmployeeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+
 
 
 </Project>
