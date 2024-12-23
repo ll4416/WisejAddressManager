@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle5 = new Wisej.Web.DataGridViewCellStyle();
-            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle6 = new Wisej.Web.DataGridViewCellStyle();
+            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle1 = new Wisej.Web.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Page1));
+            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle2 = new Wisej.Web.DataGridViewCellStyle();
             this.OrganizationTable = new Wisej.Web.DataGridView();
             this.OIdCol = new Wisej.Web.DataGridViewTextBoxColumn();
             this.ONameCol = new Wisej.Web.DataGridViewTextBoxColumn();
@@ -53,7 +54,6 @@
             this.OrganizationTableButton = new Wisej.Web.Button();
             this.EmployeePanel = new Wisej.Web.Panel();
             this.OrganizationPanel = new Wisej.Web.Panel();
-            this.DialogBox = new Wisej.Web.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.OrganizationTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EmployeeTable)).BeginInit();
             this.EmployeePanel.SuspendLayout();
@@ -63,10 +63,10 @@
             // OrganizationTable
             // 
             this.OrganizationTable.AutoSize = true;
-            this.OrganizationTable.AutoSizeColumnsMode = Wisej.Web.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.OrganizationTable.AutoSizeColumnsMode = Wisej.Web.DataGridViewAutoSizeColumnsMode.Fill;
             this.OrganizationTable.BackColor = System.Drawing.Color.FromName("@window");
-            dataGridViewCellStyle5.Alignment = Wisej.Web.DataGridViewContentAlignment.MiddleLeft;
-            this.OrganizationTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = Wisej.Web.DataGridViewContentAlignment.MiddleLeft;
+            this.OrganizationTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.OrganizationTable.Columns.AddRange(new Wisej.Web.DataGridViewColumn[] {
             this.OIdCol,
             this.ONameCol,
@@ -75,9 +75,11 @@
             this.OCityCol,
             this.OCountryCol});
             this.OrganizationTable.Location = new System.Drawing.Point(0, 45);
+            this.OrganizationTable.Margin = new Wisej.Web.Padding(0, 0, 0, 50);
             this.OrganizationTable.MinimumSize = new System.Drawing.Size(750, 0);
             this.OrganizationTable.MultiSelect = false;
             this.OrganizationTable.Name = "OrganizationTable";
+            this.OrganizationTable.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("OrganizationTable.ResponsiveProfiles"))));
             this.OrganizationTable.ShowColumnVisibilityMenu = false;
             this.OrganizationTable.Size = new System.Drawing.Size(750, 36);
             this.OrganizationTable.TabIndex = 0;
@@ -87,41 +89,58 @@
             // OIdCol
             // 
             this.OIdCol.DataPropertyName = "Id";
+            this.OIdCol.FillWeight = 1F;
             this.OIdCol.HeaderText = "#";
+            this.OIdCol.MaximumWidth = 1;
+            this.OIdCol.MinimumWidth = 2;
             this.OIdCol.Name = "OIdCol";
             this.OIdCol.ReadOnly = true;
             this.OIdCol.Visible = false;
-            this.OIdCol.Width = 40;
+            this.OIdCol.Width = 1;
             // 
             // ONameCol
             // 
             this.ONameCol.DataPropertyName = "Name";
+            this.ONameCol.FillWeight = 30F;
             this.ONameCol.HeaderText = "Name";
+            this.ONameCol.MinimumWidth = 75;
             this.ONameCol.Name = "ONameCol";
+            this.ONameCol.Width = 150;
             // 
             // OStreetCol
             // 
             this.OStreetCol.DataPropertyName = "Street";
+            this.OStreetCol.FillWeight = 20F;
             this.OStreetCol.HeaderText = "Street";
+            this.OStreetCol.MinimumWidth = 75;
             this.OStreetCol.Name = "OStreetCol";
+            this.OStreetCol.Width = 150;
             // 
             // OZipCol
             // 
             this.OZipCol.DataPropertyName = "Zip";
+            this.OZipCol.FillWeight = 10F;
             this.OZipCol.HeaderText = "Zip";
+            this.OZipCol.MinimumWidth = 45;
             this.OZipCol.Name = "OZipCol";
             // 
             // OCityCol
             // 
             this.OCityCol.DataPropertyName = "City";
+            this.OCityCol.FillWeight = 20F;
             this.OCityCol.HeaderText = "City";
+            this.OCityCol.MinimumWidth = 75;
             this.OCityCol.Name = "OCityCol";
+            this.OCityCol.Width = 150;
             // 
             // OCountryCol
             // 
             this.OCountryCol.DataPropertyName = "Country";
+            this.OCountryCol.FillWeight = 20F;
             this.OCountryCol.HeaderText = "Country";
+            this.OCountryCol.MinimumWidth = 75;
             this.OCountryCol.Name = "OCountryCol";
+            this.OCountryCol.Width = 150;
             // 
             // AddOrgButton
             // 
@@ -137,10 +156,12 @@
             // 
             // EmployeeTableButton
             // 
+            this.EmployeeTableButton.Anchor = ((Wisej.Web.AnchorStyles)((Wisej.Web.AnchorStyles.Top | Wisej.Web.AnchorStyles.Right)));
             this.EmployeeTableButton.BackColor = System.Drawing.Color.LightCyan;
             this.EmployeeTableButton.Font = new System.Drawing.Font("@defaultBold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.EmployeeTableButton.Location = new System.Drawing.Point(480, 0);
+            this.EmployeeTableButton.Location = new System.Drawing.Point(498, 0);
             this.EmployeeTableButton.Name = "EmployeeTableButton";
+            this.EmployeeTableButton.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("EmployeeTableButton.ResponsiveProfiles"))));
             this.EmployeeTableButton.Size = new System.Drawing.Size(270, 40);
             this.EmployeeTableButton.TabIndex = 4;
             this.EmployeeTableButton.Text = "Show Employees of Selected Organization";
@@ -160,9 +181,9 @@
             // EmployeeTable
             // 
             this.EmployeeTable.AutoSize = true;
-            this.EmployeeTable.AutoSizeColumnsMode = Wisej.Web.DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridViewCellStyle6.Alignment = Wisej.Web.DataGridViewContentAlignment.MiddleLeft;
-            this.EmployeeTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.EmployeeTable.AutoSizeColumnsMode = Wisej.Web.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle2.Alignment = Wisej.Web.DataGridViewContentAlignment.MiddleLeft;
+            this.EmployeeTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.EmployeeTable.Columns.AddRange(new Wisej.Web.DataGridViewColumn[] {
             this.EIdCol,
             this.ETitleCol,
@@ -172,10 +193,12 @@
             this.EEmailCol,
             this.EOrgIdCol});
             this.EmployeeTable.Location = new System.Drawing.Point(0, 45);
-            this.EmployeeTable.MinimumSize = new System.Drawing.Size(750, 0);
+            this.EmployeeTable.Margin = new Wisej.Web.Padding(0, 0, 0, 50);
+            this.EmployeeTable.MinimumSize = new System.Drawing.Size(765, 0);
             this.EmployeeTable.Name = "EmployeeTable";
+            this.EmployeeTable.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("EmployeeTable.ResponsiveProfiles"))));
             this.EmployeeTable.ShowColumnVisibilityMenu = false;
-            this.EmployeeTable.Size = new System.Drawing.Size(750, 36);
+            this.EmployeeTable.Size = new System.Drawing.Size(765, 36);
             this.EmployeeTable.TabIndex = 6;
             this.EmployeeTable.CellBeginEdit += new Wisej.Web.DataGridViewCellCancelEventHandler(this.EmployeeTable_CellBeginEdit);
             this.EmployeeTable.CellEndEdit += new Wisej.Web.DataGridViewCellEventHandler(this.EmployeeTable_CellEndEdit);
@@ -183,49 +206,64 @@
             // EIdCol
             // 
             this.EIdCol.DataPropertyName = "Id";
+            this.EIdCol.FillWeight = 1F;
             this.EIdCol.HeaderText = "Id";
+            this.EIdCol.MinimumWidth = 2;
             this.EIdCol.Name = "EIdCol";
             this.EIdCol.Visible = false;
-            this.EIdCol.Width = 150;
+            this.EIdCol.Width = 2;
             // 
             // ETitleCol
             // 
             this.ETitleCol.DataPropertyName = "Title";
+            this.ETitleCol.FillWeight = 15F;
             this.ETitleCol.HeaderText = "Title";
+            this.ETitleCol.MinimumWidth = 50;
             this.ETitleCol.Name = "ETitleCol";
             // 
             // EFirstNameCol
             // 
             this.EFirstNameCol.DataPropertyName = "FirstName";
+            this.EFirstNameCol.FillWeight = 15F;
             this.EFirstNameCol.HeaderText = "First Name";
+            this.EFirstNameCol.MinimumWidth = 50;
             this.EFirstNameCol.Name = "EFirstNameCol";
             // 
             // ELastNameCol
             // 
             this.ELastNameCol.DataPropertyName = "LastName";
+            this.ELastNameCol.FillWeight = 25F;
             this.ELastNameCol.HeaderText = "Last Name";
+            this.ELastNameCol.MinimumWidth = 50;
             this.ELastNameCol.Name = "ELastNameCol";
             // 
             // EPhoneNumberCol
             // 
             this.EPhoneNumberCol.DataPropertyName = "PhoneNumber";
+            this.EPhoneNumberCol.FillWeight = 25F;
             this.EPhoneNumberCol.HeaderText = "Phone Number";
+            this.EPhoneNumberCol.MinimumWidth = 100;
             this.EPhoneNumberCol.Name = "EPhoneNumberCol";
             this.EPhoneNumberCol.Width = 200;
             // 
             // EEmailCol
             // 
             this.EEmailCol.DataPropertyName = "Email";
+            this.EEmailCol.FillWeight = 25F;
             this.EEmailCol.HeaderText = "Email";
+            this.EEmailCol.MinimumWidth = 100;
             this.EEmailCol.Name = "EEmailCol";
             this.EEmailCol.Width = 200;
             // 
             // EOrgIdCol
             // 
             this.EOrgIdCol.DataPropertyName = "OrganizationId";
+            this.EOrgIdCol.FillWeight = 1F;
             this.EOrgIdCol.HeaderText = "Organization Id";
+            this.EOrgIdCol.MinimumWidth = 2;
             this.EOrgIdCol.Name = "EOrgIdCol";
             this.EOrgIdCol.Visible = false;
+            this.EOrgIdCol.Width = 2;
             // 
             // AddEmployeeButton
             // 
@@ -254,8 +292,11 @@
             this.OrganizationTableButton.Anchor = ((Wisej.Web.AnchorStyles)((Wisej.Web.AnchorStyles.Top | Wisej.Web.AnchorStyles.Right)));
             this.OrganizationTableButton.BackColor = System.Drawing.Color.LightCyan;
             this.OrganizationTableButton.Font = new System.Drawing.Font("@defaultBold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.OrganizationTableButton.Location = new System.Drawing.Point(480, 0);
+            this.OrganizationTableButton.Location = new System.Drawing.Point(495, 0);
             this.OrganizationTableButton.Name = "OrganizationTableButton";
+            this.OrganizationTableButton.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("OrganizationTableButton.ResponsiveProfiles"))));
+            this.OrganizationTableButton.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("OrganizationTableButton.ResponsiveProfiles1"))));
+            this.OrganizationTableButton.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("OrganizationTableButton.ResponsiveProfiles2"))));
             this.OrganizationTableButton.Size = new System.Drawing.Size(270, 40);
             this.OrganizationTableButton.TabIndex = 9;
             this.OrganizationTableButton.Text = "Show Organizations";
@@ -264,16 +305,19 @@
             // EmployeePanel
             // 
             this.EmployeePanel.AutoScroll = true;
+            this.EmployeePanel.AutoSize = true;
             this.EmployeePanel.Controls.Add(this.OrganizationTableButton);
             this.EmployeePanel.Controls.Add(this.AddEmployeeButton);
             this.EmployeePanel.Controls.Add(this.DeleteEmployeeButton);
             this.EmployeePanel.Controls.Add(this.EmployeeTable);
             this.EmployeePanel.Location = new System.Drawing.Point(150, 50);
             this.EmployeePanel.Name = "EmployeePanel";
+            this.EmployeePanel.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("EmployeePanel.ResponsiveProfiles"))));
+            this.EmployeePanel.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("EmployeePanel.ResponsiveProfiles1"))));
+            this.EmployeePanel.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("EmployeePanel.ResponsiveProfiles2"))));
             this.EmployeePanel.ShowCloseButton = false;
-            this.EmployeePanel.Size = new System.Drawing.Size(753, 200);
+            this.EmployeePanel.Size = new System.Drawing.Size(765, 200);
             this.EmployeePanel.TabIndex = 11;
-            this.EmployeePanel.ResponsiveProfileChanged += new Wisej.Web.ResponsiveProfileChangedEventHandler(this.MainPanel_ResponsiveProfileChanged);
             // 
             // OrganizationPanel
             // 
@@ -285,16 +329,10 @@
             this.OrganizationPanel.Controls.Add(this.OrganizationTable);
             this.OrganizationPanel.Location = new System.Drawing.Point(150, 50);
             this.OrganizationPanel.Name = "OrganizationPanel";
-            this.OrganizationPanel.Size = new System.Drawing.Size(753, 200);
+            this.OrganizationPanel.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("OrganizationPanel.ResponsiveProfiles"))));
+            this.OrganizationPanel.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("OrganizationPanel.ResponsiveProfiles1"))));
+            this.OrganizationPanel.Size = new System.Drawing.Size(768, 200);
             this.OrganizationPanel.TabIndex = 12;
-            this.OrganizationPanel.ResponsiveProfileChanged += new Wisej.Web.ResponsiveProfileChangedEventHandler(this.MainPanel_ResponsiveProfileChanged);
-            // 
-            // DialogBox
-            // 
-            this.DialogBox.Location = new System.Drawing.Point(0, 0);
-            this.DialogBox.Name = "DialogBox";
-            this.DialogBox.Size = new System.Drawing.Size(802, 30);
-            this.DialogBox.TabIndex = 13;
             // 
             // Page1
             // 
@@ -302,12 +340,12 @@
             this.AutoScaleMode = Wisej.Web.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromName("@window");
-            this.Controls.Add(this.DialogBox);
             this.Controls.Add(this.EmployeePanel);
             this.Controls.Add(this.OrganizationPanel);
             this.Name = "Page1";
             this.Size = new System.Drawing.Size(924, 861);
             this.Load += new System.EventHandler(this.Page1_Load);
+            this.Resize += new System.EventHandler(this.Page1_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.OrganizationTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EmployeeTable)).EndInit();
             this.EmployeePanel.ResumeLayout(false);
@@ -343,7 +381,6 @@
         private Wisej.Web.Button OrganizationTableButton;
         private Wisej.Web.Panel EmployeePanel;
         private Wisej.Web.Panel OrganizationPanel;
-        private Wisej.Web.TextBox DialogBox;
     }
 }
 

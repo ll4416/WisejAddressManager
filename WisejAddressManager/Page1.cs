@@ -11,7 +11,7 @@ namespace WisejAddressManager
     {
         // Layout Contants
         private const int PANEL_TOP_MARGIN = 50;
-        private const float MAX_PANEL_VW = 80;
+        private const float MAX_PANEL_VW = 70;
 
         // Fields to store an organization cell data
         private object editOrgCellValue = default;
@@ -30,17 +30,8 @@ namespace WisejAddressManager
             InitializeComponent();
         }
 
-        private void Page1_Load(object sender, System.EventArgs e)
+        private void Page1_Load(object sender, EventArgs e)
         {
-            //DialogBox.Text = VW(MAX_PANEL_VW).ToString();
-            DialogBox.Text = Application.MainPage.Size.ToString();
-
-            //OrganizationPanel.MaximumSize = new Size(VW(MAX_PANEL_VW), 0);
-            //EmployeePanel.MaximumSize = new Size(VW(MAX_PANEL_VW), 0);
-
-            RelocateControlToCenter(OrganizationPanel, PANEL_TOP_MARGIN);
-            RelocateControlToCenter(EmployeePanel, PANEL_TOP_MARGIN);
-
             EmployeePanel.Visible = false;
 
             UpdateOrgGrid();
@@ -311,10 +302,34 @@ namespace WisejAddressManager
         }
 
         // Style Methods
-        private void MainPanel_ResponsiveProfileChanged(object sender, ResponsiveProfileChangedEventArgs e)
+        private void Page1_Resize(object sender, EventArgs e)
         {
-            Panel panel = sender as Panel;
-            RelocateControlToCenter(panel, PANEL_TOP_MARGIN);
+            Control obj = sender as Control;
+            Size newSize = obj.Size;
+
+            int newPanelWidth = VW(newSize, MAX_PANEL_VW);
+
+            ResizeAllWidth(OrganizationPanel, newPanelWidth);
+            ResizeAllWidth(OrganizationPanel, newPanelWidth);
+            ResizeAllWidth(OrganizationTable, newPanelWidth);
+            RelocateControlToCenter(OrganizationPanel, PANEL_TOP_MARGIN);
+
+            ResizeAllWidth(EmployeePanel, newPanelWidth);
+            ResizeAllWidth(EmployeePanel, newPanelWidth);
+            ResizeAllWidth(EmployeeTable, newPanelWidth);
+            RelocateControlToCenter(EmployeePanel, PANEL_TOP_MARGIN);
+        }
+        /// <summary>
+        /// Relocates a control, centered horizontally, at a given vertical length
+        /// </summary>
+        /// <param name="controlToMove">Control to be moved</param>
+        /// <param name="topMargin">Length in pixels</param>
+        private static void RelocateControlToCenter(Control controlToMove, int topMargin)
+        {
+            controlToMove.Location = new Point(
+                controlToMove.Parent.Width / 2 - controlToMove.Size.Width / 2,
+                topMargin);
+            controlToMove.Anchor = AnchorStyles.Top;
         }
 
         // Helper Methods
@@ -338,36 +353,19 @@ namespace WisejAddressManager
                 EmployeeTable.DataSource = conn.Query<EmployeeModel>(
                     $"SELECT * FROM 'Employees' WHERE OrganizationId = {currentOrgId}");
         }
-        /// <summary>
-        /// Moves Control to the center of its parent
-        /// </summary>
-        /// <param name="controlToMove">Control to move</param>
-        private static void RelocateControlToCenter(Control controlToMove)
+        private static void ResizeAllWidth(Control obj, int newWidth)
         {
-            RelocateControlToCenter(controlToMove, 
-                controlToMove.Parent.Height / 2 - controlToMove.Size.Height / 2);
-        }
-        /// <summary>
-        /// Relocates a control, centered horizontally, at a given vertical length
-        /// </summary>
-        /// <param name="controlToMove">Control to be moved</param>
-        /// <param name="topMargin">Length in pixels</param>
-        private static void RelocateControlToCenter(Control controlToMove, int topMargin)
-        {
-            controlToMove.Location = new Point(
-                controlToMove.Parent.Width / 2 - controlToMove.Size.Width / 2,
-                topMargin);
-            controlToMove.Anchor = AnchorStyles.Top;
+            obj.MaximumSize = new Size(newWidth, 0);
+            obj.Size = new Size(newWidth, obj.Size.Height);
+            obj.MinimumSize = new Size(newWidth, obj.MinimumSize.Height);
         }
         /// <summary>
         /// Converts a viewport width measurement to pixel
         /// </summary>
         /// <param name="vwSize">Ratio of viewport width</param>
-        private int VW(float vwSize)
+        private int VW(Size viewportSize, float vwSize)
         {
-            return (int)(Screen.Bounds.Size.Width * (vwSize * .01));
-            //return (int)(Application.Desktop.Size.Width * (vwSize * .01));
-            //return (int)(Size.Width * (vwSize * .01));
+            return (int)(viewportSize.Width * (vwSize * .01));
         }
     }
 }
