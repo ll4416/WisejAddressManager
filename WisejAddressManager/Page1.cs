@@ -75,7 +75,7 @@ namespace WisejAddressManager
                 return;
             }
 
-            string sql = "UPDATE \"Organizations\" SET @Column = @Data WHERE Id = @Id";
+            string sql = @"UPDATE 'Organizations' SET @Column = @Data WHERE Id = @Id";
             sql = sql.Replace("@Column", OrganizationTable.Columns[editOrgCellCol].DataPropertyName);
 
             using (SQLiteCommand command = DB.GetCommand(sql))
@@ -140,11 +140,19 @@ namespace WisejAddressManager
 
             int orgIdToDelete = (int)(OrganizationTable.SelectedRows[0]["OIdCol"].Value ?? -1);
 
-            string sql = $"DELETE FROM \"Organizations\" WHERE \"Id\" = {orgIdToDelete}";
-            using (SQLiteCommand command = DB.GetCommand(sql)) command.ExecuteNonQuery();
+            string sql = $"DELETE FROM 'Organizations' WHERE Id = @OrgId";
+            using (SQLiteCommand command = DB.GetCommand(sql))
+            {
+                command.Parameters.AddWithValue("@OrgId", orgIdToDelete);
+                command.ExecuteNonQuery();
+            }
 
-            sql = $"DELETE FROM \"Employees\" WHERE \"OrganizationId\" = {orgIdToDelete}";
-            using (SQLiteCommand command = DB.GetCommand(sql)) command.ExecuteNonQuery();
+            sql = $"DELETE FROM 'Employees' WHERE OrganizationId = @OrgId";
+            using (SQLiteCommand command = DB.GetCommand(sql))
+            {
+                command.Parameters.AddWithValue("@OrgId", orgIdToDelete);
+                command.ExecuteNonQuery();
+            }
 
             UpdateOrgGrid();
         }
@@ -197,8 +205,11 @@ namespace WisejAddressManager
                 return;
             }
 
-            string sql = "INSERT INTO \"Organizations\" (Name, Street, Zip, City, Country) " +
-                "VALUES (@Name, @Street, @Zip, @City, @Country)";
+            string sql =
+            @"
+                INSERT INTO 'Organizations' (Name, Street, Zip, City, Country)
+                VALUES (@Name, @Street, @Zip, @City, @Country)
+            ";
 
             using (SQLiteCommand command = DB.GetCommand(sql))
             {
@@ -251,7 +262,7 @@ namespace WisejAddressManager
                 return;
             }
 
-            string sql = "UPDATE \"Employees\" SET @Column = @Data WHERE Id = @Id";
+            string sql = "UPDATE 'Employees' SET @Column = @Data WHERE Id = @Id";
             sql = sql.Replace("@Column", EmployeeTable.Columns[editEmployeeCellCol].DataPropertyName);
 
             using (SQLiteCommand command = DB.GetCommand(sql))
@@ -315,16 +326,19 @@ namespace WisejAddressManager
                 employeeIdsToDelete.Add((int)row["EIdCol"].Value);
             }
 
-            string sql = $"DELETE FROM \"Employees\" WHERE \"Id\" IN (";
-            //employeeIdsToDelete.ForEach(id => sql += id);
-            foreach (int employeeId in employeeIdsToDelete)
+            string sql = $"DELETE FROM 'Employees' WHERE Id IN (";
+
+            for (int i = 0; i < employeeIdsToDelete.Count; i++)
+                sql += $"@EmployeeId{i},";
+            sql = sql.Remove(sql.Length - 1, 1) + ")";
+
+            using (SQLiteCommand command = DB.GetCommand(sql))
             {
-                sql += employeeId + ",";
+                for (int i = 0; i < employeeIdsToDelete.Count; i++)
+                    command.Parameters.AddWithValue($"@EmployeeId{i}", employeeIdsToDelete[i]);
+
+                command.ExecuteNonQuery();
             }
-
-            sql = $"{sql.Substring(0, sql.Length - 1)})";
-
-            using (SQLiteCommand command = DB.GetCommand(sql)) command.ExecuteNonQuery();
 
             UpdateEmployeeGrid();
         }
@@ -345,8 +359,11 @@ namespace WisejAddressManager
                 return;
             }
 
-            string sql = "INSERT INTO \"Employees\" (Title, FirstName, LastName, PhoneNumber, Email, OrganizationId) " +
-                "VALUES (@Title, @FirstName, @LastName, @PhoneNumber, @Email, @OrganizationId)";
+            string sql =
+            @"
+                INSERT INTO 'Employees' (Title, FirstName, LastName, PhoneNumber, Email, OrganizationId) 
+                VALUES (@Title, @FirstName, @LastName, @PhoneNumber, @Email, @OrganizationId)
+            ";
 
             using (SQLiteCommand command = DB.GetCommand(sql))
             {
@@ -372,16 +389,6 @@ namespace WisejAddressManager
         // Helper Methods
         private void ToggleOrganizationEmployeeView()
         {
-            //AddOrgButton.Visible = !AddOrgButton.Visible;
-            //DeleteOrgButton.Visible = !DeleteOrgButton.Visible;
-            //EmployeeTableButton.Visible = !EmployeeTableButton.Visible;
-            //OrganizationTable.Visible = !OrganizationTable.Visible;
-
-            //AddEmployeeButton.Visible = !AddEmployeeButton.Visible;
-            //DeleteEmployeeButton.Visible = !DeleteEmployeeButton.Visible;
-            //OrganizationTableButton.Visible = !OrganizationTable.Visible;
-            //EmployeeTable.Visible = !EmployeeTable.Visible;
-
             EmployeePanel.Visible = !EmployeePanel.Visible;
             OrganizationPanel.Visible = !OrganizationPanel.Visible;
 
@@ -392,7 +399,7 @@ namespace WisejAddressManager
         {
             using (var conn = DB.GetConnection())
             {
-                var orgs = conn.Query<OragnizationModel>("SELECT * FROM \"Organizations\"");
+                var orgs = conn.Query<OragnizationModel>("SELECT * FROM 'Organizations'");
                 OrganizationTable.DataSource = orgs;
             }
         }
@@ -401,7 +408,7 @@ namespace WisejAddressManager
             using (var conn = DB.GetConnection())
             {
                 var employees = conn.Query<EmployeeModel>(
-                    $"SELECT * FROM \"Employees\" WHERE \"OrganizationId\" = {currentOrgId}");
+                    $"SELECT * FROM 'Employees' WHERE OrganizationId = {currentOrgId}");
                 EmployeeTable.DataSource = employees;
             }
         }
