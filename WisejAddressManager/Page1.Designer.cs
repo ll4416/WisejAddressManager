@@ -75,6 +75,7 @@
             this.OZipCol,
             this.OCityCol,
             this.OCountryCol});
+            this.OrganizationTable.KeepSameRowHeight = true;
             this.OrganizationTable.Location = new System.Drawing.Point(0, 45);
             this.OrganizationTable.Margin = new Wisej.Web.Padding(0, 0, 0, 50);
             this.OrganizationTable.MinimumSize = new System.Drawing.Size(765, 0);
@@ -145,7 +146,6 @@
             // 
             // AddOrgButton
             // 
-            this.AddOrgButton.AutoSize = true;
             this.AddOrgButton.BackColor = System.Drawing.Color.LightGreen;
             this.AddOrgButton.Font = new System.Drawing.Font("@defaultBold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.AddOrgButton.Location = new System.Drawing.Point(0, 0);
@@ -161,7 +161,7 @@
             this.EmployeeTableButton.Anchor = ((Wisej.Web.AnchorStyles)((Wisej.Web.AnchorStyles.Top | Wisej.Web.AnchorStyles.Right)));
             this.EmployeeTableButton.BackColor = System.Drawing.Color.LightCyan;
             this.EmployeeTableButton.Font = new System.Drawing.Font("@defaultBold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.EmployeeTableButton.Location = new System.Drawing.Point(495, 0);
+            this.EmployeeTableButton.Location = new System.Drawing.Point(500, 0);
             this.EmployeeTableButton.Name = "EmployeeTableButton";
             this.EmployeeTableButton.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("EmployeeTableButton.ResponsiveProfiles"))));
             this.EmployeeTableButton.Size = new System.Drawing.Size(270, 40);
@@ -196,6 +196,7 @@
             this.EPhoneNumberCol,
             this.EEmailCol,
             this.EOrgIdCol});
+            this.EmployeeTable.KeepSameRowHeight = true;
             this.EmployeeTable.Location = new System.Drawing.Point(0, 45);
             this.EmployeeTable.Margin = new Wisej.Web.Padding(0, 0, 0, 50);
             this.EmployeeTable.MinimumSize = new System.Drawing.Size(765, 0);
@@ -230,7 +231,7 @@
             this.EFirstNameCol.DataPropertyName = "FirstName";
             this.EFirstNameCol.FillWeight = 15F;
             this.EFirstNameCol.HeaderText = "First Name";
-            this.EFirstNameCol.MinimumWidth = 50;
+            this.EFirstNameCol.MinimumWidth = 70;
             this.EFirstNameCol.Name = "EFirstNameCol";
             // 
             // ELastNameCol
@@ -298,7 +299,7 @@
             this.OrganizationTableButton.Anchor = ((Wisej.Web.AnchorStyles)((Wisej.Web.AnchorStyles.Top | Wisej.Web.AnchorStyles.Right)));
             this.OrganizationTableButton.BackColor = System.Drawing.Color.LightCyan;
             this.OrganizationTableButton.Font = new System.Drawing.Font("@defaultBold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.OrganizationTableButton.Location = new System.Drawing.Point(495, 0);
+            this.OrganizationTableButton.Location = new System.Drawing.Point(500, 0);
             this.OrganizationTableButton.Name = "OrganizationTableButton";
             this.OrganizationTableButton.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("OrganizationTableButton.ResponsiveProfiles"))));
             this.OrganizationTableButton.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("OrganizationTableButton.ResponsiveProfiles1"))));
@@ -323,7 +324,7 @@
             this.EmployeePanel.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("EmployeePanel.ResponsiveProfiles1"))));
             this.EmployeePanel.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("EmployeePanel.ResponsiveProfiles2"))));
             this.EmployeePanel.ShowCloseButton = false;
-            this.EmployeePanel.Size = new System.Drawing.Size(765, 200);
+            this.EmployeePanel.Size = new System.Drawing.Size(770, 200);
             this.EmployeePanel.TabIndex = 11;
             // 
             // OrganizationPanel
@@ -340,7 +341,7 @@
             this.OrganizationPanel.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("OrganizationPanel.ResponsiveProfiles"))));
             this.OrganizationPanel.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("OrganizationPanel.ResponsiveProfiles1"))));
             this.OrganizationPanel.ShowCloseButton = false;
-            this.OrganizationPanel.Size = new System.Drawing.Size(765, 200);
+            this.OrganizationPanel.Size = new System.Drawing.Size(770, 200);
             this.OrganizationPanel.TabIndex = 12;
             // 
             // Page1

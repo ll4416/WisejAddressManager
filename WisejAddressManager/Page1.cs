@@ -11,11 +11,10 @@ namespace WisejAddressManager
     {
         // Layout Contants
         private const int PANEL_TOP_MARGIN = 50;
+        private const int LONG_SHORT_THRESHOLD = 940;
         private const float LONG_MAX_PANEL_VW = 70;
         private const float SHORT_MAX_PANEL_VW = 85;
-        private const int LONG_SHORT_THRESHOLD = 940;
 
-        // Button Constants
         private const int LONG_ADD_WIDTH = 150;
         private const int LONG_DELETE_WIDTH = 200;
         private const int LONG_SHOW_WIDTH = 270;
