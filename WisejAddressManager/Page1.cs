@@ -48,7 +48,8 @@ namespace WisejAddressManager
 
         // Currently selected organizaion for the Employee Table
         private int currentOrgId = default;
-        // Fields to store an employee cell data
+
+        // Fields to store employee cell data
         private object editEmployeeCellValue = default;
         private int editEmployeeCellId = default;
         private string editEmployeeCellCol = default;
@@ -86,13 +87,13 @@ namespace WisejAddressManager
 
             if (insertedData is null || insertedData.ToString() == string.Empty)
             {
-                OrganizationTable.Rows[e.RowIndex][editOrgCellCol].Value = editOrgCellValue;
                 MessageBox.Show("Cell can't be blank.",
                                 "Invalid Data",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error,
                                 MessageBoxDefaultButton.Button1,
                                 true);
+                OrganizationTable.Rows[e.RowIndex][editOrgCellCol].Value = editOrgCellValue;
                 return;
             }
 
@@ -144,7 +145,7 @@ namespace WisejAddressManager
 
             if (OrganizationTable.SelectedRows.Count == 0)
             {
-                MessageBox.Show("An organization must be selected for deleteion.",
+                MessageBox.Show("An organization must be selected for deletion.",
                                 "Invalid Data",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error,
@@ -210,8 +211,8 @@ namespace WisejAddressManager
                                 true);
                 return;
             }
-            currentOrgId = selectedOrgId;
 
+            currentOrgId = selectedOrgId;
             ToggleOrganizationEmployeeView();
         }
 
@@ -236,13 +237,13 @@ namespace WisejAddressManager
 
             if (insertedData is null || insertedData.ToString() == string.Empty)
             {
-                EmployeeTable.Rows[e.RowIndex][editOrgCellCol].Value = editEmployeeCellValue;
                 MessageBox.Show("Cell can't be blank.",
                                 "Invalid Data",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error,
                                 MessageBoxDefaultButton.Button1,
                                 true);
+                EmployeeTable.Rows[e.RowIndex][editEmployeeCellCol].Value = editEmployeeCellValue;
                 return;
             }
 
@@ -287,7 +288,7 @@ namespace WisejAddressManager
         {
             if (EmployeeTable.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Atleast one employee must be selected for deleteion.",
+                MessageBox.Show("Atleast one employee must be selected for deletion.",
                                 "Invalid Data",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error,
@@ -312,14 +313,15 @@ namespace WisejAddressManager
                 employeeIdsToDelete.Add((int)row["EIdCol"].Value);
             }
 
+            // Constructs a sql command with places for all selected employees
             string sql = "DELETE FROM 'Employees' WHERE Id IN (";
-
             for (int i = 0; i < employeeIdsToDelete.Count; i++)
                 sql += $"@EmployeeId{i},";
             sql = sql.Remove(sql.Length - 1, 1) + ")";
 
             using (SQLiteCommand command = DB.GetCommand(sql))
             {
+                // Loops through list of employee ids and adds their value into the command
                 for (int i = 0; i < employeeIdsToDelete.Count; i++)
                     command.Parameters.AddWithValue($"@EmployeeId{i}", employeeIdsToDelete[i]);
 
@@ -353,7 +355,7 @@ namespace WisejAddressManager
             RelocatePanelToCenter(EmployeePanel, PANEL_TOP_MARGIN);
 
             int buttonMargin;
-            if (screenSize.Width > LONG_SHORT_THRESHOLD)
+            if (screenSize.Width > LONG_SHORT_THRESHOLD) // Wide viewport
             {
                 ResizeAllWidth(AddOrgButton, LONG_ADD_WIDTH);
                 ResizeAllWidth(DeleteOrgButton, LONG_DELETE_WIDTH);
@@ -373,7 +375,7 @@ namespace WisejAddressManager
 
                 buttonMargin = LONG_BUTTON_MARGIN;
             }
-            else
+            else // Thin viewport
             {
                 ResizeAllWidth(AddOrgButton, SHORT_ADD_WIDTH);
                 ResizeAllWidth(DeleteOrgButton, SHORT_DELETE_WIDTH);
@@ -404,14 +406,14 @@ namespace WisejAddressManager
         /// <summary>
         /// Relocates a control, centered horizontally, at a given vertical length
         /// </summary>
-        /// <param name="controlToMove">Control to be moved</param>
+        /// <param name="panelToMove">Control to be moved</param>
         /// <param name="topMargin">Length in pixels</param>
-        private static void RelocatePanelToCenter(Panel controlToMove, int topMargin)
+        private static void RelocatePanelToCenter(Panel panelToMove, int topMargin)
         {
-            controlToMove.Location = new Point(
-                controlToMove.Parent.Width / 2 - controlToMove.Size.Width / 2,
+            panelToMove.Location = new Point(
+                panelToMove.Parent.Width / 2 - panelToMove.Size.Width / 2,
                 topMargin);
-            controlToMove.Anchor = AnchorStyles.Top;
+            panelToMove.Anchor = AnchorStyles.Top;
         }
 
         // Helper Methods
@@ -435,16 +437,22 @@ namespace WisejAddressManager
                 EmployeeTable.DataSource = conn.Query<EmployeeModel>(
                     $"SELECT * FROM 'Employees' WHERE OrganizationId = {currentOrgId}");
         }
-        private static void ResizeAllWidth(Control obj, int newWidth)
+        /// <summary>
+        /// Sets the min, max, and target widths
+        /// </summary>
+        /// <param name="newWidth">Width to set</param>
+        private static void ResizeAllWidth(Control control, int newWidth)
         {
-            obj.MaximumSize = new Size(newWidth, 0);
-            obj.Size = new Size(newWidth, obj.Size.Height);
-            obj.MinimumSize = new Size(newWidth, obj.MinimumSize.Height);
+            control.MaximumSize = new Size(newWidth, 0);
+            control.Size = new Size(newWidth, control.Size.Height);
+            control.MinimumSize = new Size(newWidth, control.MinimumSize.Height);
         }
+
         /// <summary>
         /// Converts a viewport width measurement to pixel
         /// </summary>
         /// <param name="vwSize">Ratio of viewport width</param>
+        /// <returns></returns>
         private static int VW(Size viewportSize, float vwSize) => (int)(viewportSize.Width * (vwSize * .01));
     }
 }

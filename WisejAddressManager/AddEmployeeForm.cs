@@ -12,12 +12,19 @@ namespace WisejAddressManager
         public string PhoneNumber => PhoneNumberBox.Text;
         public string Email => EmailBox.Text;
 
+        /// <summary>
+        /// Creates a form to add an employee
+        /// </summary>
+        /// <param name="orgId">Id of current organization</param>
         public AddEmployeeForm(int orgId)
         {
             InitializeComponent();
             currentOrgId = orgId;
         }
 
+        /// <summary>
+        /// Verifies valid input then adds the employee into the database
+        /// </summary>
         private void ConfirmButton_Click(object sender, System.EventArgs e)
         {
             if (TitleBox.Text == string.Empty ||
@@ -36,11 +43,18 @@ namespace WisejAddressManager
             Close();
         }
 
+        /// <summary>
+        /// Closes form
+        /// </summary>
         private void CancelButton_Click(object sender, System.EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
+
+        /// <summary>
+        /// Adds employee to the database
+        /// </summary>
         private void AddEmployee()
         {
             string sql =

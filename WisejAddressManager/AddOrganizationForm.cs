@@ -16,6 +16,9 @@ namespace WisejAddressManager
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Verifies valid input then adds organization into the database
+        /// </summary>
         private void ConfirmButton_Click(object sender, System.EventArgs e)
         {
             if (NameBox.Text == string.Empty ||
@@ -34,11 +37,18 @@ namespace WisejAddressManager
             Close();
         }
 
+        /// <summary>
+        /// Closes the form
+        /// </summary>
         private void CancelButton_Click(object sender, System.EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
+
+        /// <summary>
+        /// Adds organization to the database
+        /// </summary>
         private void AddOrganization()
         {
             string sql =
