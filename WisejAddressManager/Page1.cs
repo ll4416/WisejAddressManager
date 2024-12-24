@@ -11,7 +11,36 @@ namespace WisejAddressManager
     {
         // Layout Contants
         private const int PANEL_TOP_MARGIN = 50;
-        private const float MAX_PANEL_VW = 70;
+        private const float LONG_MAX_PANEL_VW = 70;
+        private const float SHORT_MAX_PANEL_VW = 85;
+        private const int LONG_SHORT_THRESHOLD = 940;
+
+        // Button Constants
+        private const int LONG_ADD_WIDTH = 150;
+        private const int LONG_DELETE_WIDTH = 200;
+        private const int LONG_SHOW_WIDTH = 270;
+        private const int LONG_BUTTON_MARGIN = 20;
+
+        private const string LONG_EMPLOYEE_ADD = "Add Employee";
+        private const string LONG_EMPLOYEE_DELETE = "Delete Selected Employees";
+        private const string LONG_SHOW_ORGANIZATION = "Show Organizations";
+
+        private const string LONG_ORGANIZATION_ADD = "Add Organization";
+        private const string LONG_ORGANIZATION_DELETE = "Delete Selected Organization";
+        private const string LONG_SHOW_EMPLOYEE = "Show Employees of Selected Organization";
+
+        private const int SHORT_ADD_WIDTH = 40;
+        private const int SHORT_DELETE_WIDTH = 40;
+        private const int SHORT_SHOW_WIDTH = 150;
+        private const int SHORT_BUTTON_MARGIN = 10;
+
+        private const string SHORT_EMPLOYEE_ADD = "+";
+        private const string SHORT_EMPLOYEE_DELETE = "-";
+        private const string SHORT_SHOW_ORGANIZATION = "Organizations";
+
+        private const string SHORT_ORGANIZATION_ADD = "+";
+        private const string SHORT_ORGANIZATION_DELETE = "-";
+        private const string SHORT_SHOW_EMPLOYEE = "Employees";
 
         // Fields to store an organization cell data
         private object editOrgCellValue = default;
@@ -302,29 +331,83 @@ namespace WisejAddressManager
         }
 
         // Style Methods
+        /// <summary>
+        /// Changes elements on the page based on width of the viewport
+        /// </summary>
+        /// <param name="sender">Page1</param>
         private void Page1_Resize(object sender, EventArgs e)
         {
-            Control obj = sender as Control;
-            Size newSize = obj.Size;
+            Size screenSize = ((Control)sender).Size;
 
-            int newPanelWidth = VW(newSize, MAX_PANEL_VW);
+            // Decides on the width of content
+            int newPanelWidth = VW(screenSize, 
+                screenSize.Width > LONG_SHORT_THRESHOLD ? 
+                LONG_MAX_PANEL_VW : 
+                SHORT_MAX_PANEL_VW);
 
-            ResizeAllWidth(OrganizationPanel, newPanelWidth);
             ResizeAllWidth(OrganizationPanel, newPanelWidth);
             ResizeAllWidth(OrganizationTable, newPanelWidth);
-            RelocateControlToCenter(OrganizationPanel, PANEL_TOP_MARGIN);
+            RelocatePanelToCenter(OrganizationPanel, PANEL_TOP_MARGIN);
 
             ResizeAllWidth(EmployeePanel, newPanelWidth);
-            ResizeAllWidth(EmployeePanel, newPanelWidth);
             ResizeAllWidth(EmployeeTable, newPanelWidth);
-            RelocateControlToCenter(EmployeePanel, PANEL_TOP_MARGIN);
+            RelocatePanelToCenter(EmployeePanel, PANEL_TOP_MARGIN);
+
+            int buttonMargin;
+            if (screenSize.Width > LONG_SHORT_THRESHOLD)
+            {
+                ResizeAllWidth(AddOrgButton, LONG_ADD_WIDTH);
+                ResizeAllWidth(DeleteOrgButton, LONG_DELETE_WIDTH);
+                ResizeAllWidth(EmployeeTableButton, LONG_SHOW_WIDTH);
+
+                AddOrgButton.Text = LONG_ORGANIZATION_ADD;
+                DeleteOrgButton.Text = LONG_ORGANIZATION_DELETE;
+                EmployeeTableButton.Text = LONG_SHOW_EMPLOYEE;
+
+                ResizeAllWidth(AddEmployeeButton, LONG_ADD_WIDTH);
+                ResizeAllWidth(DeleteEmployeeButton, LONG_DELETE_WIDTH);
+                ResizeAllWidth(OrganizationTableButton, LONG_SHOW_WIDTH);
+
+                AddEmployeeButton.Text = LONG_EMPLOYEE_ADD;
+                DeleteEmployeeButton.Text = LONG_EMPLOYEE_DELETE;
+                OrganizationTableButton.Text = LONG_SHOW_ORGANIZATION;
+
+                buttonMargin = LONG_BUTTON_MARGIN;
+            }
+            else
+            {
+                ResizeAllWidth(AddOrgButton, SHORT_ADD_WIDTH);
+                ResizeAllWidth(DeleteOrgButton, SHORT_DELETE_WIDTH);
+                ResizeAllWidth(EmployeeTableButton, SHORT_SHOW_WIDTH);
+
+                AddOrgButton.Text = SHORT_ORGANIZATION_ADD;
+                DeleteOrgButton.Text = SHORT_ORGANIZATION_DELETE;
+                EmployeeTableButton.Text = SHORT_SHOW_EMPLOYEE;
+
+                ResizeAllWidth(AddEmployeeButton, SHORT_ADD_WIDTH);
+                ResizeAllWidth(DeleteEmployeeButton, SHORT_DELETE_WIDTH);
+                ResizeAllWidth(OrganizationTableButton, SHORT_SHOW_WIDTH);
+
+                AddEmployeeButton.Text = SHORT_EMPLOYEE_ADD;
+                DeleteEmployeeButton.Text = SHORT_EMPLOYEE_DELETE;
+                OrganizationTableButton.Text = SHORT_SHOW_ORGANIZATION;
+
+                buttonMargin = SHORT_BUTTON_MARGIN;
+            }
+            DeleteOrgButton.Location = new Point(AddOrgButton.Size.Width + buttonMargin, 0);
+            EmployeeTableButton.Location = new Point(
+                OrganizationPanel.Size.Width - EmployeeTableButton.Size.Width, 0);
+
+            DeleteEmployeeButton.Location = new Point(AddEmployeeButton.Size.Width + buttonMargin, 0);
+            OrganizationTableButton.Location = new Point(
+                EmployeePanel.Size.Width - OrganizationTableButton.Size.Width, 0);
         }
         /// <summary>
         /// Relocates a control, centered horizontally, at a given vertical length
         /// </summary>
         /// <param name="controlToMove">Control to be moved</param>
         /// <param name="topMargin">Length in pixels</param>
-        private static void RelocateControlToCenter(Control controlToMove, int topMargin)
+        private static void RelocatePanelToCenter(Panel controlToMove, int topMargin)
         {
             controlToMove.Location = new Point(
                 controlToMove.Parent.Width / 2 - controlToMove.Size.Width / 2,
@@ -363,9 +446,6 @@ namespace WisejAddressManager
         /// Converts a viewport width measurement to pixel
         /// </summary>
         /// <param name="vwSize">Ratio of viewport width</param>
-        private int VW(Size viewportSize, float vwSize)
-        {
-            return (int)(viewportSize.Width * (vwSize * .01));
-        }
+        private static int VW(Size viewportSize, float vwSize) => (int)(viewportSize.Width * (vwSize * .01));
     }
 }

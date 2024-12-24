@@ -67,6 +67,7 @@
             this.OrganizationTable.BackColor = System.Drawing.Color.FromName("@window");
             dataGridViewCellStyle1.Alignment = Wisej.Web.DataGridViewContentAlignment.MiddleLeft;
             this.OrganizationTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.OrganizationTable.ColumnHeadersHeightSizeMode = Wisej.Web.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.OrganizationTable.Columns.AddRange(new Wisej.Web.DataGridViewColumn[] {
             this.OIdCol,
             this.ONameCol,
@@ -76,12 +77,12 @@
             this.OCountryCol});
             this.OrganizationTable.Location = new System.Drawing.Point(0, 45);
             this.OrganizationTable.Margin = new Wisej.Web.Padding(0, 0, 0, 50);
-            this.OrganizationTable.MinimumSize = new System.Drawing.Size(750, 0);
+            this.OrganizationTable.MinimumSize = new System.Drawing.Size(765, 0);
             this.OrganizationTable.MultiSelect = false;
             this.OrganizationTable.Name = "OrganizationTable";
             this.OrganizationTable.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("OrganizationTable.ResponsiveProfiles"))));
             this.OrganizationTable.ShowColumnVisibilityMenu = false;
-            this.OrganizationTable.Size = new System.Drawing.Size(750, 36);
+            this.OrganizationTable.Size = new System.Drawing.Size(765, 36);
             this.OrganizationTable.TabIndex = 0;
             this.OrganizationTable.CellBeginEdit += new Wisej.Web.DataGridViewCellCancelEventHandler(this.OrganizationTable_CellBeginEdit);
             this.OrganizationTable.CellEndEdit += new Wisej.Web.DataGridViewCellEventHandler(this.OrganizationTable_CellEndEdit);
@@ -148,6 +149,7 @@
             this.AddOrgButton.BackColor = System.Drawing.Color.LightGreen;
             this.AddOrgButton.Font = new System.Drawing.Font("@defaultBold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.AddOrgButton.Location = new System.Drawing.Point(0, 0);
+            this.AddOrgButton.Margin = new Wisej.Web.Padding(0);
             this.AddOrgButton.Name = "AddOrgButton";
             this.AddOrgButton.Size = new System.Drawing.Size(150, 40);
             this.AddOrgButton.TabIndex = 2;
@@ -159,7 +161,7 @@
             this.EmployeeTableButton.Anchor = ((Wisej.Web.AnchorStyles)((Wisej.Web.AnchorStyles.Top | Wisej.Web.AnchorStyles.Right)));
             this.EmployeeTableButton.BackColor = System.Drawing.Color.LightCyan;
             this.EmployeeTableButton.Font = new System.Drawing.Font("@defaultBold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.EmployeeTableButton.Location = new System.Drawing.Point(498, 0);
+            this.EmployeeTableButton.Location = new System.Drawing.Point(495, 0);
             this.EmployeeTableButton.Name = "EmployeeTableButton";
             this.EmployeeTableButton.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("EmployeeTableButton.ResponsiveProfiles"))));
             this.EmployeeTableButton.Size = new System.Drawing.Size(270, 40);
@@ -172,6 +174,7 @@
             this.DeleteOrgButton.BackColor = System.Drawing.Color.LightCoral;
             this.DeleteOrgButton.Font = new System.Drawing.Font("@defaultBold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.DeleteOrgButton.Location = new System.Drawing.Point(170, 0);
+            this.DeleteOrgButton.Margin = new Wisej.Web.Padding(0);
             this.DeleteOrgButton.Name = "DeleteOrgButton";
             this.DeleteOrgButton.Size = new System.Drawing.Size(200, 40);
             this.DeleteOrgButton.TabIndex = 5;
@@ -184,6 +187,7 @@
             this.EmployeeTable.AutoSizeColumnsMode = Wisej.Web.DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle2.Alignment = Wisej.Web.DataGridViewContentAlignment.MiddleLeft;
             this.EmployeeTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.EmployeeTable.ColumnHeadersHeightSizeMode = Wisej.Web.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.EmployeeTable.Columns.AddRange(new Wisej.Web.DataGridViewColumn[] {
             this.EIdCol,
             this.ETitleCol,
@@ -270,6 +274,7 @@
             this.AddEmployeeButton.BackColor = System.Drawing.Color.LightGreen;
             this.AddEmployeeButton.Font = new System.Drawing.Font("@defaultBold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.AddEmployeeButton.Location = new System.Drawing.Point(0, 0);
+            this.AddEmployeeButton.Margin = new Wisej.Web.Padding(0);
             this.AddEmployeeButton.Name = "AddEmployeeButton";
             this.AddEmployeeButton.Size = new System.Drawing.Size(150, 40);
             this.AddEmployeeButton.TabIndex = 7;
@@ -281,6 +286,7 @@
             this.DeleteEmployeeButton.BackColor = System.Drawing.Color.LightCoral;
             this.DeleteEmployeeButton.Font = new System.Drawing.Font("@defaultBold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.DeleteEmployeeButton.Location = new System.Drawing.Point(170, 0);
+            this.DeleteEmployeeButton.Margin = new Wisej.Web.Padding(0);
             this.DeleteEmployeeButton.Name = "DeleteEmployeeButton";
             this.DeleteEmployeeButton.Size = new System.Drawing.Size(200, 40);
             this.DeleteEmployeeButton.TabIndex = 8;
@@ -311,6 +317,7 @@
             this.EmployeePanel.Controls.Add(this.DeleteEmployeeButton);
             this.EmployeePanel.Controls.Add(this.EmployeeTable);
             this.EmployeePanel.Location = new System.Drawing.Point(150, 50);
+            this.EmployeePanel.Margin = new Wisej.Web.Padding(0);
             this.EmployeePanel.Name = "EmployeePanel";
             this.EmployeePanel.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("EmployeePanel.ResponsiveProfiles"))));
             this.EmployeePanel.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("EmployeePanel.ResponsiveProfiles1"))));
@@ -328,10 +335,12 @@
             this.OrganizationPanel.Controls.Add(this.EmployeeTableButton);
             this.OrganizationPanel.Controls.Add(this.OrganizationTable);
             this.OrganizationPanel.Location = new System.Drawing.Point(150, 50);
+            this.OrganizationPanel.Margin = new Wisej.Web.Padding(0);
             this.OrganizationPanel.Name = "OrganizationPanel";
             this.OrganizationPanel.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("OrganizationPanel.ResponsiveProfiles"))));
             this.OrganizationPanel.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("OrganizationPanel.ResponsiveProfiles1"))));
-            this.OrganizationPanel.Size = new System.Drawing.Size(768, 200);
+            this.OrganizationPanel.ShowCloseButton = false;
+            this.OrganizationPanel.Size = new System.Drawing.Size(765, 200);
             this.OrganizationPanel.TabIndex = 12;
             // 
             // Page1
